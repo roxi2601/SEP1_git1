@@ -12,6 +12,10 @@ public class Course
     this.room=room;
     this.examType=examType;
     this.numberOfStudents=numberOfStudents;
+<<<<<<< HEAD
+=======
+    ddddddddddd
+>>>>>>> f1f6b68986727f58df1f7cccbea7d31714fe96ac
   }
   public String getName()
   {
