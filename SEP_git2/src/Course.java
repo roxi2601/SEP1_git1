@@ -75,5 +75,6 @@ public class Course
     Course other=(Course)obj;
     return name.equals(other.name) && teacher.equals(other.teacher) && room.equals(other.room) && examType.equals(other.examType)
         && numberOfStudents==other.numberOfStudents;
+    upupupupupu
   }
 }
