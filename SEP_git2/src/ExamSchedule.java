@@ -19,7 +19,7 @@ public class ExamSchedule
     ArrayList<Exam> exams2 = new ArrayList<>();
     for (int i = 0; i < exams.size(); i++)
     {
-      if (!(exams.get(i).getCourse().equals(courseName)))
+      if (!(exams.get(i).getCourse().getName().equals(courseName)))
       {
         exams2.add(exams.get(i));
       }
@@ -51,9 +51,9 @@ public class ExamSchedule
     }
     return exams2;
   }
-  public void editExam(Exam exam) //????????
+  public void editExam(Exam exam)
   {
-
+    //should it be in GUI adapter???
   }
   public void addExam(Exam exam)
   {

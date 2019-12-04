@@ -11,13 +11,15 @@ public class ExamScheduleAdapter
     mfio = new MyFileIO();
     this.fileName = fileName;
   }
-  public CourseList getAllCourses()
+
+  // Use the MyFileIO class to retrieve a CourseList object with all Students
+  public ExamSchedule getAllExams()
   {
-    CourseList courses = new CourseList();
+    ExamSchedule examSchedule = new ExamSchedule();
 
     try
     {
-      courses = (CourseList) mfio.readObjectFromFile(fileName);
+      examSchedule = (ExamSchedule)mfio.readObjectFromFile(fileName);
     }
     catch (FileNotFoundException e)
     {
@@ -31,15 +33,14 @@ public class ExamScheduleAdapter
     {
       System.out.println("Class Not Found");
     }
-    return courses;
+    return examSchedule;
   }
-  public RoomList getAllRooms()
+  //method saves the updated exam schedule and writes it to file
+  public void saveExamSchedule(ExamSchedule exams)
   {
-    RoomList rooms = new RoomList();
-
     try
     {
-      rooms = (RoomList) mfio.readObjectFromFile(fileName);
+      mfio.writeToFile(fileName, exams);
     }
     catch (FileNotFoundException e)
     {
@@ -47,34 +48,9 @@ public class ExamScheduleAdapter
     }
     catch (IOException e)
     {
-      System.out.println("IO Error reading file");
+      System.out.println("IO Error writing to file");
     }
-    catch (ClassNotFoundException e)
-    {
-      System.out.println("Class Not Found");
-    }
-    return rooms;
   }
-  public TeacherList getAllTeachers()
-  {
-    TeacherList teachers = new TeacherList();
 
-    try
-    {
-      teachers = (TeacherList) mfio.readObjectFromFile(fileName);
-    }
-    catch (FileNotFoundException e)
-    {
-      System.out.println("File not found");
-    }
-    catch (IOException e)
-    {
-      System.out.println("IO Error reading file");
-    }
-    catch (ClassNotFoundException e)
-    {
-      System.out.println("Class Not Found");
-    }
-    return teachers;
-  }
+  //
 }
