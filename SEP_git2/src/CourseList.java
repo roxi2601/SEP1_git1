@@ -1,8 +1,8 @@
 import java.util.ArrayList;
-
 public class CourseList
 {
-  private ArrayList<Course>courses;
+  private ArrayList<Course> courses;
+
   public CourseList()
   {
     courses=new ArrayList<Course>();
@@ -10,14 +10,6 @@ public class CourseList
   public ArrayList<Course> getAllCourses()
   {
     return courses;
-  }
-  public void addRoom(Room room)
-  {
-
-  }
-  public void removeRoom(Room room)
-  {
-
   }
   public String toString()
   {
@@ -28,5 +20,14 @@ public class CourseList
           + "Exam type:"+courses.get(i).getExamType()+" Number of students:"+courses.get(i).getNumberOfStudents();
     }
     return str;
+  }
+  public boolean equals(Object obj)
+  {
+    if(!(obj instanceof CourseList))
+    {
+      return false;
+    }
+    CourseList other = (CourseList)obj;
+    return other.courses==courses;
   }
 }
