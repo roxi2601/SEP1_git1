@@ -11,14 +11,6 @@ public class CourseList
   {
     return courses;
   }
-  public void addRoom(Room room)
-  {
-
-  }
-  public void removeRoom(Room room)
-  {
-
-  }
   public String toString()
   {
     String str="";
