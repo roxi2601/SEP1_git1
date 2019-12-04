@@ -11,7 +11,7 @@ public abstract class Exam
     this.examiner=examiner;
     this.date=date;
     this.course=course;
-    blblblblblbl
+
   }
 
   public Course getCourse()
