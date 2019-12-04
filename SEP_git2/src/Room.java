@@ -1,4 +1,6 @@
-public class Room
+import java.io.Serializable;
+
+public class Room implements Serializable
 {
   private String number;
   private boolean HDMI;

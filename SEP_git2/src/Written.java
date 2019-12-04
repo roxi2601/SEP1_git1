@@ -1,4 +1,6 @@
-public class Written extends Exam
+import java.io.Serializable;
+
+public class Written extends Exam implements Serializable
 {
   public Written(Room room, Teacher examiner, MyDate date, Course course)
   {

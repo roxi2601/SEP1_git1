@@ -52,5 +52,8 @@ public class ExamScheduleAdapter
     }
   }
 
-  //h
+  public void addExam(Course course, Teacher examiner, Room room, MyDate date)
+  {
+
+  }
 }

@@ -1,19 +1,19 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TimePeriod
+public class TimePeriod implements Serializable
 {
   private int startHour;
   private int startMinute;
   private int endHour;
   private int endMinute;
-  private ArrayList<MyDate>myDates;
+
   public TimePeriod(int startHour, int startMinute, int endHour, int endMinute)
   {
     this.startHour=startHour;
     this.startMinute=startMinute;
     this.endHour=endHour;
     this.endMinute=endMinute;
-    myDates=new ArrayList<MyDate>();
   }
   public int getStartHour()
   {
@@ -44,42 +44,14 @@ public class TimePeriod
   {
     this.endMinute = endMinute;
   }
-  //??????????????????????????????????????????????????????/
-  public MyDate getDate(int day, int month, int year)
-  {
-    for(int i=0;i<myDates.size();i++)
-    {
-      if(!(myDates.get(i).getDay()==day && myDates.get(i).getMonth()==month && myDates.get(i).getYear()==year))
-      {
-        myDates.get(i);
-      }
-    }
-    return null;
-  }
-  public void addDate(int day, int month, int year)
-  {
-    MyDate myDate=new MyDate(day,month,year);
-    myDates.add(myDate);
-  }
-  public void removeDate(int day, int month, int year)
-  {
-    MyDate myDate=new MyDate(day,month,year);
-    myDates.remove(myDate);
-  }
-  //??????????????????????????????????????????????????????????????????????????????????/
+
   public TimePeriod copy()
   {
     return new TimePeriod(startHour,startMinute,endHour,endMinute);
   }
   public String toString()
   {
-   String str="";
-   for(int i=0;i<myDates.size();i++)
-   {
-     str+="Date:"+myDates.get(i).getDay()+"/"+myDates.get(i).getMonth()+"/"+myDates.get(i).getYear()+""
-         + "\nTime period: Start:"+startHour+","+startMinute+" End:"+endHour+","+endMinute;
-   }
-   return str;
+    return startHour+":"+startMinute+"-"+endHour+":"+endMinute;
   }
   public boolean equals(Object obj)
   {

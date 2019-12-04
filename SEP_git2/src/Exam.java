@@ -1,4 +1,6 @@
-public abstract class Exam
+import java.io.Serializable;
+
+public abstract class Exam implements Serializable
 {
   private Teacher examiner;
   private MyDate date;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExamSchedule
+public class ExamSchedule implements Serializable
 {
   private ArrayList<Exam> exams;
 

@@ -1,4 +1,6 @@
-public class Oral extends Exam
+import java.io.Serializable;
+
+public class Oral extends Exam implements Serializable
 {
   public Oral(Room room, Teacher examiner, MyDate date, Course course)
   {
