@@ -29,6 +29,5 @@ public class CourseList
     }
     CourseList other = (CourseList)obj;
     return other.courses==courses;
-
   }
 }
