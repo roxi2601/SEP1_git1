@@ -60,14 +60,14 @@ public abstract class Exam implements Serializable
   {
     this.date = date;
   }
-  public void reserveRoom() //????????????
+  public void reserveRoom(Room room)
   {
     this.room=room;
   }
   public abstract String getType();
   public String toString()
   {
-    return "Course:"+course+" Examiner:"+examiner+" Date:"+date+" Room:"+room+" Number of students:"+numberOfStudents;
+    return course+" "+examiner+" "+date+" "+room+" "+numberOfStudents;
   }
   public boolean equals(Object obj)
   {

@@ -1,17 +1,24 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class MyDate implements Serializable
 {
   private int day;
   private int month;
   private int year;
+  private ArrayList<TimePeriod> hours;
+
   public MyDate(int day, int month, int year)
   {
+    hours = new ArrayList<TimePeriod>();
     this.day=day;
     this.month=month;
     this.year=year;
   }
-
+  public void setHours(TimePeriod hour)
+  {
+    hours.add(hour);
+  }
   public void setDay(int day)
   {
     this.day = day;
@@ -41,13 +48,23 @@ public class MyDate implements Serializable
   {
     return year;
   }
+
+  public ArrayList<TimePeriod> getHours()
+  {
+    return hours;
+  }
   public MyDate copy()
   {
     return new MyDate(day,month,year);
   }
   public String toString()
   {
-    return "Date:"+day+"/"+month+"/"+year;
+    String str="";
+    for(int i = 0;i<hours.size();i++)
+    {
+      str+=hours.get(i)+" ";
+    }
+    return day+"/"+month+"/"+year+" "+str;
   }
   public boolean equals(Object obj)
   {
