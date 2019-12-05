@@ -7,13 +7,9 @@ import java.io.Serializable;
  */
 public class Written extends Exam implements Serializable
 {
-  public Written(Course course,Teacher examiner, MyDate date, Room room)
+  public Written(String kind,Course course,Teacher examiner, MyDate date, Room room)
   {
-    super(course, examiner, date, room);
-  }
-  public void reserveRoom() //??????????????/
-  {
-
+    super(kind,course, examiner, date, room);
   }
   public String getType()
   {

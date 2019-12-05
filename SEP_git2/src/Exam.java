@@ -12,8 +12,11 @@ public abstract class Exam implements Serializable
   private MyDate date;
   private Room room;
   private Course course;
-  public Exam(Course course, Teacher examiner, MyDate date, Room room)
+  private String kind; // is it midterm, re-exam or re-re-exam???
+
+  public Exam(String kind, Course course, Teacher examiner, MyDate date, Room room)
   {
+    this.kind = kind;
     this.room=room;
     this.examiner=examiner;
     this.date=date;
@@ -23,7 +26,14 @@ public abstract class Exam implements Serializable
   {
     return course;
   }
-
+  public void setKind(String kind)
+  {
+    this.kind = kind;
+  }
+  public String getKind()
+  {
+    return kind;
+  }
   public Room getRoom()
   {
     return room;
@@ -50,12 +60,6 @@ public abstract class Exam implements Serializable
   {
     course.setNumberOfStudents(numberOfStudents);
   }
-
-  public void setRoom(Room room)
-  {
-    this.room = room;
-  }
-
   public void setExaminer(Teacher examiner)
   {
     this.examiner = examiner;
@@ -69,6 +73,7 @@ public abstract class Exam implements Serializable
   {
     this.room=room;
   }
+
   public abstract String getType();
   public String toString()
   {

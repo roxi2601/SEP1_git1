@@ -56,7 +56,7 @@ public class ExamScheduleAdapter
       System.out.println("IO Error writing to file");
     }
   }
-  public void addExam(Course course, Teacher examiner, Room room, MyDate date)
+  public void addExam(String kind, Course course, Teacher examiner, Room room, MyDate date)
   {
     ExamSchedule exams = getAllExams();
     boolean canBeAdded = true;
@@ -74,11 +74,26 @@ public class ExamScheduleAdapter
       {
         canBeAdded=false;
       }
-      exams.addExam(new Oral(course, examiner, date, room));
+      exams.addExam(new Oral(kind,course, examiner, date, room));
     }
     else if(course.getExamType().equals("Written"))
     {
-      exams.addExam(new Written(course, examiner, date, room));
+      exams.addExam(new Written(kind,course, examiner, date, room));
     }
+    saveExamSchedule(exams);
+  }
+  //get rooms
+  //change/remove rooms
+  //add room
+  //get teachers
+  //change/remove teachers
+  //add teacher
+  //get courses
+  //change/remove course
+  //add course
+  public void removeExam(MyDate date, Room room)
+  {
+    ExamSchedule exams = getAllExams();
+    for()
   }
 }

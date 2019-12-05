@@ -40,7 +40,6 @@ public class ExamSchedule implements Serializable
     }
     return exams2;
   }
-
   public ArrayList<Exam> getAllOralExams()
   {
     ArrayList<Exam> exams2 = new ArrayList<>();
@@ -82,8 +81,8 @@ public class ExamSchedule implements Serializable
     String str="";
     for(int i=0;i<exams.size();i++)
     {
-      str+="Course:"+exams.get(i).getCourse()+"Type of the exam:"+exams.get(i).getType()+"Examiner:"+exams.get(i).getExaminer()+""
-          + "Room:"+exams.get(i).getRoom()+" Date:"+exams.get(i).getDate();
+      str+= exams.get(i).getCourse()+","+exams.get(i).getType()+","+exams.get(i).getExaminer()+","
+          +exams.get(i).getRoom()+","+exams.get(i).getDate()+"\n";
     }
     return str;
   }

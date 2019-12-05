@@ -7,17 +7,9 @@ import java.io.Serializable;
  */
 public class Oral extends Exam implements Serializable
 {
-  public Oral(Course course ,Teacher examiner, MyDate date, Room room)
+  public Oral(String kind,Course course ,Teacher examiner, MyDate date, Room room)
   {
-    super(course, examiner, date, room);
-  }
-  public void planBreak() //????????/
-  {
-
-  }
-  public void reserveRoom() //??????????
-  {
-
+    super(kind,course, examiner, date, room);
   }
   public String getType()
   {
