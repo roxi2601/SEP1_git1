@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * A class containing TimePeriod objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
 public class TimePeriod implements Serializable
 {
   private int startHour;

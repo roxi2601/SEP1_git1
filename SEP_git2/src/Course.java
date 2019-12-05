@@ -1,5 +1,11 @@
 import java.io.Serializable;
 
+/**
+ *  A class containing Course objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
+
 public class Course implements Serializable
 {
   private Teacher teacher;

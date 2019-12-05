@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *  A class containing ExamSchedule objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
 public class ExamSchedule implements Serializable
 {
   private ArrayList<Exam> exams;

@@ -1,6 +1,11 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * A class loading initial data
+ * @author Julia Tankiewicz
+ * @version 1.0
+ */
 public class LoadInitialData
 {
   public static void main(String[] args)

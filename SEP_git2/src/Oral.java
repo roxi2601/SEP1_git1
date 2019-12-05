@@ -1,5 +1,10 @@
 import java.io.Serializable;
 
+/**
+ * A class containing Oral objects and methods
+ * @author Roksana Dziadowicz and
+ * @version 1.0
+ */
 public class Oral extends Exam implements Serializable
 {
   public Oral(Room room, Teacher examiner, MyDate date, Course course)

@@ -1,6 +1,11 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * A class containing ExamScheduleAdapter objects and methods
+ * @author Julia Tankiewicz
+ * @version 1.0
+ */
 public class ExamScheduleAdapter
 {
   private MyFileIO mfio;

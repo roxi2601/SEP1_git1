@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * A class containing MyDate objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
 public class MyDate implements Serializable
 {
   private int day;

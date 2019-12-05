@@ -1,5 +1,10 @@
 import java.io.Serializable;
 
+/**
+ * A class containing Room objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
 public class Room implements Serializable
 {
   private String number;

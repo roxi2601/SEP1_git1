@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *  A class containing a list of Teacher objects
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
 public class TeacherList implements Serializable
 {
   private ArrayList<Teacher> teachers;

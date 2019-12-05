@@ -1,5 +1,11 @@
 import java.io.Serializable;
 
+/**
+ *  A class containing Exam objects and methods
+ * @author Roksana Dziadowicz
+ * @version 1.0
+ */
+
 public abstract class Exam implements Serializable
 {
   private Teacher examiner;
