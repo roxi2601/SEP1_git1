@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 public class Oral extends Exam implements Serializable
 {
-  public Oral(Room room, Teacher examiner, MyDate date, Course course)
+  public Oral(Course course ,Teacher examiner, MyDate date, Room room)
   {
-    super(course, examiner, room, date);
+    super(course, examiner, date, room);
   }
   public void planBreak() //????????/
   {

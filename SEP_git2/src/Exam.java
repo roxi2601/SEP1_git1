@@ -12,8 +12,7 @@ public abstract class Exam implements Serializable
   private MyDate date;
   private Room room;
   private Course course;
-  private int numberOfStudents;
-  public Exam(Course course, Teacher examiner, Room room, MyDate date)
+  public Exam(Course course, Teacher examiner, MyDate date, Room room)
   {
     this.room=room;
     this.examiner=examiner;
@@ -31,7 +30,7 @@ public abstract class Exam implements Serializable
   }
   public int getNumberOfStudents()
   {
-    return numberOfStudents;
+    return course.getNumberOfStudents();
   }
   public Teacher getExaminer()
   {
@@ -49,7 +48,7 @@ public abstract class Exam implements Serializable
 
   public void setNumberOfStudents(int numberOfStudents)
   {
-    this.numberOfStudents = numberOfStudents;
+    course.setNumberOfStudents(numberOfStudents);
   }
 
   public void setRoom(Room room)
@@ -73,7 +72,7 @@ public abstract class Exam implements Serializable
   public abstract String getType();
   public String toString()
   {
-    return course+" "+examiner+" "+date+" "+room+" "+numberOfStudents;
+    return course+" "+examiner+" "+date+" "+room;
   }
   public boolean equals(Object obj)
   {
@@ -82,6 +81,6 @@ public abstract class Exam implements Serializable
       return false;
     }
     Exam other=(Exam)obj;
-    return course.equals(other.course) && numberOfStudents==other.numberOfStudents && room.equals(other.room) && examiner.equals(other.examiner) && date.equals(other.date);
+    return course.equals(other.course) && room.equals(other.room) && examiner.equals(other.examiner) && date.equals(other.date);
   }
 }

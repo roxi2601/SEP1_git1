@@ -20,6 +20,14 @@ public class ExamSchedule implements Serializable
     return exams;
   }
 
+  public Exam getExam(int index)
+  {
+    return exams.get(index);
+  }
+  public int size()
+  {
+    return exams.size();
+  }
   public ArrayList<Exam> getAllExams(String courseName) //???
   {
     ArrayList<Exam> exams2 = new ArrayList<>();

@@ -23,11 +23,14 @@ public class LoadInitialData
       {
         String temp = examsArray[i];
         String[] tempArr = temp.split(" ");
-        String course = tempArr[0];
-        String examiner = tempArr[1];
-        String date = tempArr[2];
-        String room = tempArr[3];
-        String nrOfStudents = tempArr[4];
+        /*if(tempArr[0] instanceof Course)
+        {
+          Course course = (Course)tempArr[0];
+        }
+        Teacher examiner = tempArr[1];
+        MyDate date = tempArr[2];
+        Room room = tempArr[3];*/
+        int nrOfStudents =Integer.parseInt(tempArr[4]);
         /*in exam project we have difrent types of data: other objects, ints itd..
         so I don't know how to convert Strings from txt file to diferent
         java objects to use them later, if you have idea please do it
