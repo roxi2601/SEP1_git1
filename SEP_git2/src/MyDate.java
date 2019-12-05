@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * A class containing MyDate objects and methods
- * @author Roksana Dziadowicz
+ * @author Roksana Dziadowicz and Julia Tankiewicz
  * @version 1.0
  */
 public class MyDate implements Serializable
