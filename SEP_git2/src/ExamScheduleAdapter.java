@@ -40,6 +40,7 @@ public class ExamScheduleAdapter
     }
     return examSchedule;
   }
+
   //method saves the updated exam schedule and writes it to file
   public void saveExamSchedule(ExamSchedule exams)
   {
@@ -82,18 +83,64 @@ public class ExamScheduleAdapter
     }
     saveExamSchedule(exams);
   }
-  //get rooms
-  //change/remove rooms
-  //add room
-  //get teachers
-  //change/remove teachers
-  //add teacher
-  //get courses
-  //change/remove course
-  //add course
   public void removeExam(MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();
-    for()
+    for(int i = 0;i<exams.size();i++)
+    {
+      if(exams.getExam(i).getRoom().equals(room) && exams.getExam(i).getDate().equals(date))
+      {
+        exams.removeExam(exams.getExam(i));
+      }
+    }
+    saveExamSchedule(exams);
+  }
+  public void changeCourse(Course course,MyDate date, Room room)
+  {
+    ExamSchedule exams = getAllExams();
+    for (int i = 0; i < exams.size(); i++)
+    {
+      if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getRoom().equals(room));
+      {
+        exams.getExam(i).setCourse(course);
+      }
+    }
+  }
+  public void changeDate(Course course, MyDate date, Room room)
+  {
+    ExamSchedule exams = getAllExams();
+    for (int i = 0; i < exams.size(); i++)
+    {
+      if(exams.getExam(i).getCourse().equals(course) && exams.getExam(i).getRoom().equals(room));
+      {
+        exams.getExam(i).setDate(date);
+      }
+    }
+  }
+  public void changeExaminer(Teacher examiner,MyDate date, Room room)
+  {
+    ExamSchedule exams = getAllExams();
+    for (int i = 0; i < exams.size(); i++)
+    {
+      if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getRoom().equals(room));
+      {
+        exams.getExam(i).setExaminer(examiner);
+      }
+    }
+  }
+  public void changeRoom(Course course,MyDate date, Room room)
+  {
+    ExamSchedule exams = getAllExams();
+    for (int i = 0; i < exams.size(); i++)
+    {
+      if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getCourse().equals(course));
+      {
+        exams.getExam(i).reserveRoom(room);
+      }
+    }
   }
 }
+
+
+
+
