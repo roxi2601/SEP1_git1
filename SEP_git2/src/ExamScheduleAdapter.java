@@ -98,6 +98,7 @@ public class ExamScheduleAdapter
   public void changeCourse(Course course,MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();
+
     for (int i = 0; i < exams.size(); i++)
     {
       if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getRoom().equals(room));
@@ -109,6 +110,14 @@ public class ExamScheduleAdapter
   public void changeDate(Course course, MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();
+    boolean canBeReserved = true;
+    for(int j = 0;j<exams.size();j++)
+    {
+      if(exams.getExam(j).getDate().equals(date)&& exams.getExam(j).getRoom().equals(room))
+      {
+        canBeReserved = false;
+      }
+    }
     for (int i = 0; i < exams.size(); i++)
     {
       if(exams.getExam(i).getCourse().equals(course) && exams.getExam(i).getRoom().equals(room));
@@ -120,6 +129,14 @@ public class ExamScheduleAdapter
   public void changeExaminer(Teacher examiner,MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();
+    boolean canBeReserved = true;
+    for(int j = 0;j<exams.size();j++)
+    {
+      if(exams.getExam(j).getExaminer().equals(examiner)&& exams.getExam(j).getDate().equals(date))
+      {
+        canBeReserved = false;
+      }
+    }
     for (int i = 0; i < exams.size(); i++)
     {
       if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getRoom().equals(room));
@@ -130,11 +147,20 @@ public class ExamScheduleAdapter
   }
   public void changeRoom(Course course,MyDate date, Room room)
   {
+    boolean canBeReserved = true;
     ExamSchedule exams = getAllExams();
+    for(int j = 0;j<exams.size();j++)
+    {
+      if(exams.getExam(j).getRoom().equals(room)&& exams.getExam(j).getDate().equals(date))
+      {
+        canBeReserved = false;
+      }
+    }
     for (int i = 0; i < exams.size(); i++)
     {
-      if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getCourse().equals(course));
+      if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getCourse().equals(course)&& canBeReserved);
       {
+
         exams.getExam(i).reserveRoom(room);
       }
     }

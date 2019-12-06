@@ -28,7 +28,7 @@ public class ExamSchedule implements Serializable
   {
     return exams.size();
   }
-  public ArrayList<Exam> getAllExams(String courseName) //???
+  public ArrayList<Exam> getAllExams(String courseName)
   {
     ArrayList<Exam> exams2 = new ArrayList<>();
     for (int i = 0; i < exams.size(); i++)

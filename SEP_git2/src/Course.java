@@ -13,9 +13,10 @@ public class Course implements Serializable
   private int numberOfStudents;
   private String name;
   private String examType;
-  private boolean needsHDMI;
+  //Do we need this data and where? :
+  /*private boolean needsHDMI;
   private boolean needsVGA;
-  private boolean needsProjector;
+  private boolean needsProjector;*/
 
   public Course(String name, Teacher teacher, Room room, String examType, int numberOfStudents)
   {
