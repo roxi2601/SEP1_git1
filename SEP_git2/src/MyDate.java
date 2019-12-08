@@ -31,7 +31,7 @@ public class MyDate implements Serializable
    * Sets the hour of the start of the exam and the end of the exam.
    * @param hour
    */
-  public void setHours(TimePeriod hour) //?????????
+  public void setHours(TimePeriod hour) //????????? IT'S NOT CORRECT, I THINK
   {
     hours.add(hour);
   }
