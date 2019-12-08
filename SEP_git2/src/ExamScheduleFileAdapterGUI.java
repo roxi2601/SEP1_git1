@@ -13,7 +13,7 @@ import javafx.beans.value.ObservableValue;
 //import java.util.ArrayList;
 //import java.util.Locale;
 /**
- * A class containing ExamScheduleFileAdapterGUI objects and methods
+ * A user interface that allows for displaying and modifying information about exams.
  * @author Julia Tankiewicz
  * @version 1.0
  */
@@ -48,6 +48,9 @@ public class ExamScheduleFileAdapterGUI //extends Application
   private MyActionListener listener;
   private MyTabListener tabListener;
 
+  /**
+   * @param window The Stage object that will be displayed
+   */
   public void start(Stage window)
   {
     window.setTitle("Exam Schedule");
@@ -64,6 +67,11 @@ public class ExamScheduleFileAdapterGUI //extends Application
 
 
   }
+  /*
+   * Inner action listener class
+   * @author Julia Tankiewicz
+   * @version 1.0
+   */
 
   private class MyActionListener implements EventHandler<ActionEvent>
   {
@@ -84,6 +92,11 @@ public class ExamScheduleFileAdapterGUI //extends Application
 
     }
   }
+  /*
+   * Inner change listener class
+   * @author Julia Tankiewicz
+   * @version 1.0
+   */
   private class MyTabListener implements ChangeListener<Tab>
   {
     public void changed(ObservableValue<? extends Tab> tab,Tab oldTab,Tab newTab)

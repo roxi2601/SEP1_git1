@@ -2,7 +2,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * A class loading initial data
+ * A simple program used for importing data. It reads a text file with exam
+ * information, creates a ExamSchedule object with all exams read from the file,
+ * and saves it as a binary file. The text file must have information of one exam
+ * on each line, and each line should be in the format: course, examiner, exam type, date, room.
  * @author Julia Tankiewicz
  * @version 1.0
  */

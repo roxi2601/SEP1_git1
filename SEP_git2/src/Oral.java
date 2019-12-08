@@ -2,20 +2,37 @@ import java.io.Serializable;
 
 /**
  * A class containing Oral objects and methods
- * @author Roksana Dziadowicz and
+ * @author Roksana Dziadowicz
  * @version 1.0
  */
 public class Oral extends Exam implements Serializable
 {
+  /**
+   * Four-argument constructor.
+   * @param kind kind of the exam
+   * @param course the exam's course
+   * @param examiner the exam's examiner
+   * @param date the exam's date
+   * @param room the exam's room
+   */
   public Oral(String kind,Course course ,Teacher examiner, MyDate date, Room room)
   {
     super(kind,course, examiner, date, room);
   }
+
+  /**
+   * Gets type of the exam.
+   * @return "Oral"
+   */
   public String getType()
   {
     return "Oral";
   }
 
+  /**
+   * Returns a string representation of the oral (exam).
+   * @return a string representation of the oral (exam) in the format: " course examiner Oral date room"
+   */
   public String toString()
   {
     return super.toString();

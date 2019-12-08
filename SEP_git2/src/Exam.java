@@ -147,11 +147,11 @@ public abstract class Exam implements Serializable
 
   /**
    * Returns a string representation of the exam.
-   * @return a string representation of the exam int her format: " course examiner date room"
+   * @return a string representation of the exam in the format: " course examiner type date room"
    */
   public String toString()
   {
-    return course+" "+examiner+" "+date+" "+room;
+    return course+" "+examiner+" "+getType()+" "+date+" "+room; //???????????//
   }
 
   /**

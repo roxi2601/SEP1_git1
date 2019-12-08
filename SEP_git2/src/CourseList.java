@@ -19,8 +19,8 @@ public class CourseList implements Serializable
   }
 
   /**
-   * Gets all courses.
-   * @return all courses
+   * Gets all the courses.
+   * @return all the courses
    */
   public ArrayList<Course> getAllCourses()
   {

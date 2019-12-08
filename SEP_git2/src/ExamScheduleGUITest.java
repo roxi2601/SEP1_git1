@@ -1,3 +1,4 @@
+import javafx.application.Application;
 /**
  * A class testing the whole program
  * @author Julia Tankiewicz
@@ -5,5 +6,8 @@
  */
 public class ExamScheduleGUITest
 {
-
+  public static void main(String[] args)
+  {
+    Application.launch(ExamScheduleFileAdapterGUI.class);
+  }
 }

@@ -3,7 +3,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-
+/**
+ * A GUI tab containing components for displaying a list of exams.
+ * @author Julia Tankiewicz
+ * @version 1.0
+ */
 public class ExamTab extends Tab
 {
   private HBox examsPane;
