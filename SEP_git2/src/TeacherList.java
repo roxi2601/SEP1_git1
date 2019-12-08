@@ -20,7 +20,6 @@ public class TeacherList implements Serializable
 
   /**
    * Gets all the teachers.
-   *
    * @return all the teachers
    */
   public ArrayList<Teacher> getAllTeachers()
