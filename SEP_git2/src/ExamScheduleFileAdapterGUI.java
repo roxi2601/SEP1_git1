@@ -90,7 +90,6 @@ public class ExamScheduleFileAdapterGUI //extends Application
     {
       if(newTab.equals(examsTab))
       {
-
       }
     }
   }
