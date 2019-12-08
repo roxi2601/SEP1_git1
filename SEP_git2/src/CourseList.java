@@ -10,31 +10,37 @@ public class CourseList implements Serializable
 {
   private ArrayList<Course> courses;
 
+  /**
+   * No-argument constructor initializing the CourseList.
+   */
   public CourseList()
   {
     courses=new ArrayList<Course>();
   }
+
+  /**
+   * Gets all courses.
+   * @return all courses
+   */
   public ArrayList<Course> getAllCourses()
   {
     return courses;
   }
+
+  /**
+   * Gets a String representation of the CourseList.
+   * @return a String containing information about all Course objects in the list-each Course object ollowed by a new line character
+   */
   public String toString()
   {
-    String str="";
-    for(int i=0;i<courses.size();i++)
+    String returnStr = "";
+
+    for(int i = 0; i<courses.size(); i++)
     {
-      str+="Course name:"+courses.get(i).getName()+" Teacher:"+courses.get(i).getTeacher()+" Room:"+courses.get(i).getRoom()+""
-          + "Exam type:"+courses.get(i).getExamType()+" Number of students:"+courses.get(i).getNumberOfStudents();
+      Course temp = courses.get(i);
+
+      returnStr += temp +"\n";
     }
-    return str;
-  }
-  public boolean equals(Object obj)
-  {
-    if(!(obj instanceof CourseList))
-    {
-      return false;
-    }
-    CourseList other = (CourseList)obj;
-    return other.courses==courses;
+    return returnStr;
   }
 }

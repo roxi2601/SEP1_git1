@@ -45,8 +45,8 @@ public class Course implements Serializable
   }
 
   /**
-   * Gets number of students in the course
-   * @return number of students in the course
+   * Gets the number of students in the course
+   * @return the number of students in the course
    */
 
   public int getNumberOfStudents()
@@ -96,7 +96,7 @@ public class Course implements Serializable
 
   /**
    * Sets number of students in the course.
-   * @param numberOfStudents how many students int the course will be set to
+   * @param numberOfStudents what number of students in the course will be set to
    */
 
   public void setNumberOfStudents(int numberOfStudents)

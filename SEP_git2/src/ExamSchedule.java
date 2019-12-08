@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *  A class containing ExamSchedule objects and methods
+ *  A class containing a list of Exam objects.
  * @author Roksana Dziadowicz
  * @version 1.0
  */
