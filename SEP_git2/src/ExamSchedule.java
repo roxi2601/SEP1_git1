@@ -76,6 +76,18 @@ public class ExamSchedule implements Serializable
   {
     exams.remove(exam);
   }
+
+  public Exam get(int index) //??????????????????????????? new method
+  {
+    if(index<exams.size())
+    {
+      return exams.get(index);
+    }
+    else
+    {
+      return null;
+    }
+  }
   public String toString()
   {
     String str="";
