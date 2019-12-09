@@ -75,11 +75,11 @@ public class ExamScheduleAdapter
       {
         canBeAdded=false;
       }
-      exams.addExam(new Oral(kind,course, examiner, date, room));
+      exams.addExam(new Oral(course, examiner, date, room));
     }
     else if(course.getExamType().equals("Written"))
     {
-      exams.addExam(new Written(kind,course, examiner, date, room));
+      exams.addExam(new Written(course, examiner, date, room));
     }
     saveExamSchedule(exams);
   }

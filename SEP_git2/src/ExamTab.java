@@ -26,7 +26,6 @@ public class ExamTab extends Tab
   private TableColumn<Exam, String> examinerColumn;
   private TableColumn<Exam, String> dateColumn;
   private TableColumn<Exam, String> roomNrColumn;
-  private TableColumn<Exam,String > kindColumn;
   private TableColumn<Exam, String> typeColumn;
 
   private Button getButton;
@@ -35,14 +34,12 @@ public class ExamTab extends Tab
   private Label courseLabel;
   private Label examinerLabel;
   private Label roomLabel;
-  private Label kindLabel;
   private Label typeLabel;
   private Label examLabel;
 
   private TextField courseField;
   private TextField examinerField;
   private TextField roomField;
-  private TextField kindField;
   private TextField typeField;
 
   private ComboBox<Exam> examBox;
@@ -59,7 +56,8 @@ public class ExamTab extends Tab
    listener = new MyActionListener();
 
    examsTable=  new TableView<Exam>();
-   defaultSelectionModel = examsTable.getSelectionModel();// i dont understand what it's for,can sb explain me? -julia
+   defaultSelectionModel = examsTable.getSelectionModel();// i dont understand what it's for,can sb explain me? -julia,
+    //i don't understand too:(((-roksana,
    examsTable.setPrefHeight(250);
 
     courseColumn = new TableColumn<Exam, String>("Course");
@@ -77,10 +75,6 @@ public class ExamTab extends Tab
     roomNrColumn = new TableColumn<Exam, String>("Room");
     roomNrColumn.setCellValueFactory(new PropertyValueFactory<Exam,String>("room"));
     roomNrColumn.setPrefWidth(100);
-
-    kindColumn = new TableColumn<Exam, String>("Kind");
-    kindColumn.setCellValueFactory(new PropertyValueFactory<Exam,String>("kind"));
-    kindColumn.setPrefWidth(150);
 
     typeColumn = new TableColumn<Exam, String>("Type");
     typeColumn.setCellValueFactory(new PropertyValueFactory<Exam,String>("type"));
