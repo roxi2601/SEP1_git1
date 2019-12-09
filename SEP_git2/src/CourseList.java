@@ -31,6 +31,15 @@ public class CourseList implements Serializable
    * Gets a String representation of the CourseList.
    * @return a String containing information about all Course objects in the list-each Course object ollowed by a new line character
    */
+  /**
+   * Gets the size of the arrayList
+   * @return the size of the arrayList
+   */
+  public int size() //new method because of an error in ChangeRoomTab
+  {
+    return courses.size();
+  }
+
   public String toString()
   {
     String returnStr = "";
@@ -43,4 +52,5 @@ public class CourseList implements Serializable
     }
     return returnStr;
   }
+
 }

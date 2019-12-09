@@ -45,6 +45,14 @@ public class RoomList implements Serializable
   }
 
   /**
+   * Gets the size of the arrayList
+   * @return the size of the arrayList
+   */
+  public int size() // new method because of an error in ChangeRoomTab
+  {
+    return rooms.size();
+  }
+  /**
  * Gets a String representation of the RoomList.
  * @return a String containing information about all Room objects in the list - each Room object followed by a new line character
  */

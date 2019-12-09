@@ -80,8 +80,6 @@ public class ExamTab extends Tab
     typeColumn.setCellValueFactory(new PropertyValueFactory<Exam,String>("type"));
     typeColumn.setPrefWidth(100);
 
-
-
   }
   private class MyActionListener implements EventHandler<ActionEvent>
   {
