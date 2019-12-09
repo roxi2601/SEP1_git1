@@ -9,15 +9,14 @@ public class Oral extends Exam implements Serializable
 {
   /**
    * Four-argument constructor.
-   * @param kind kind of the exam
    * @param course the exam's course
    * @param examiner the exam's examiner
    * @param date the exam's date
    * @param room the exam's room
    */
-  public Oral(String kind,Course course ,Teacher examiner, MyDate date, Room room)
+  public Oral(Course course ,Teacher examiner, MyDate date, Room room)
   {
-    super(kind,course, examiner, date, room);
+    super(course, examiner, date, room);
   }
 
   /**
@@ -31,10 +30,10 @@ public class Oral extends Exam implements Serializable
 
   /**
    * Returns a string representation of the oral (exam).
-   * @return a string representation of the oral (exam) in the format: " course examiner Oral date room"
+   * @return a string representation of the oral (exam) in the format: " course examiner date room Oral"
    */
   public String toString()
   {
-    return super.toString();
+    return super.toString()+" Oral";
   }
 }
