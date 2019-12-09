@@ -12,11 +12,8 @@ public class Course implements Serializable
   private Room room;
   private int numberOfStudents;
   private String name;
-  private String examType;
+  private String examType;// if its oral room needs projector
   //Do we need this data and where? :
-  /*private boolean needsHDMI;
-  private boolean needsVGA;
-  private boolean needsProjector;*/
 
   /**
    * Five-argument constructor.

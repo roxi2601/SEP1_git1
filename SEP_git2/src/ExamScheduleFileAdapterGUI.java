@@ -17,7 +17,7 @@ import javafx.beans.value.ObservableValue;
  * @author Julia Tankiewicz
  * @version 1.0
  */
-public class ExamScheduleFileAdapterGUI //extends Application
+public class ExamScheduleFileAdapterGUI extends Application
 {
   private ExamScheduleAdapter adapter;
 
@@ -61,9 +61,9 @@ public class ExamScheduleFileAdapterGUI //extends Application
     tabListener = new MyTabListener();
 
     tabPane = new TabPane();
-    tabPane.getSelectionModel().selectedIndexProperty().addListener(tabListener);//why error :((
+    tabPane.getSelectionModel().selectedItemProperty().addListener(tabListener);//why error :((
 
-    examsTab = new ExamTab();
+    examsTab = new ExamTab("Exams", adapter);
 
 
   }
@@ -106,6 +106,5 @@ public class ExamScheduleFileAdapterGUI //extends Application
       }
     }
   }
-
 
 }
