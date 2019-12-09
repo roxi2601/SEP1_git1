@@ -127,7 +127,7 @@ public class ExamSchedule implements Serializable
    * @param index the position in the list of the Exam object
    * @return the Exam object at position index if one exists, else null
    */
-  public Exam get(int index) //??????????????????????????? new method
+  public Exam get(int index)
   {
     if(index<exams.size())
     {
