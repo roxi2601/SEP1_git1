@@ -6,8 +6,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,9 +16,7 @@ import javafx.scene.layout.VBox;
  */
 public class ChangeRoomTab extends Tab
 {
-  private VBox changeRoomPane; //all
-
-  private HBox changeRoomTopPane; //top
+  private HBox changeRoomPane; //all
 
   private HBox addAndRemoveButtons;
 
@@ -69,10 +65,7 @@ public class ChangeRoomTab extends Tab
 
     listener = new MyActionListener();
 
-    changeRoomPane = new VBox(20);
-    changeRoomPane.setPadding(new Insets(10));
-
-    changeRoomTopPane = new HBox(20);
+    changeRoomPane = new HBox(20);
 
     //course data-start
     coursePane = new VBox(20);
@@ -149,8 +142,8 @@ public class ChangeRoomTab extends Tab
     roomPane.getChildren().add(changeRoomInputPane);
     roomPane.getChildren().add(addAndRemoveButtons); //room data-end
 
-    changeRoomTopPane.getChildren().add(coursePane);
-    changeRoomTopPane.getChildren().add(roomPane); //top pane
+    changeRoomPane.getChildren().add(coursePane);
+    changeRoomPane.getChildren().add(roomPane);
 
     super.setContent(changeRoomPane);
 
