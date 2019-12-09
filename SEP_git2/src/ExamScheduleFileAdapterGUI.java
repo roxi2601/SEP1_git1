@@ -107,5 +107,4 @@ public class ExamScheduleFileAdapterGUI //extends Application
     }
   }
 
-
 }
