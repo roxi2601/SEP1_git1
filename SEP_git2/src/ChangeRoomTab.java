@@ -68,37 +68,37 @@ public class ChangeRoomTab extends Tab
     changeRoomPane = new HBox(20);
 
     //exam data-start
-    //    coursePane = new VBox(20);
-    //    coursePane.setPrefWidth(200);
-    //
-    //    examBox = new ComboBox<Exam>();
-    //    examBox.setOnAction(listener);
-    //
-    //    roomLabel = new Label("Room:");
-    //    courseLabel = new Label("Course");
-    //    examinerLabel = new Label("Examiner:");
-    //    dateLabel = new Label("Date");
-    //
-    //    roomField = new TextField();
-    //    roomField.setEditable(false);
-    //    courseField = new TextField();
-    //    courseField.setEditable(false);
-    //    examinerField = new TextField();
-    //    examinerField.setEditable(false);
-    //    dateField = new TextField();
-    //    dateField.setEditable(false);
-    //
-    //    courseDataPane = new GridPane();
-    //    courseDataPane.setHgap(5);
-    //    courseDataPane.setVgap(5);
-    //    courseDataPane.addRow(0, roomLabel, roomField);
-    //    courseDataPane.addRow(1, courseLabel, courseField);
-    //    courseDataPane.addRow(2, examinerLabel, examinerField);
-    //    courseDataPane.addRow(3, dateLabel, dateField);
-    //
-    //    coursePane.getChildren().add(examBox);
-    //    coursePane.getChildren().add(courseDataPane);
-    //     //exam data-end
+       coursePane = new VBox(20);
+       coursePane.setPrefWidth(200);
+
+       examBox = new ComboBox<Exam>();
+       examBox.setOnAction(listener);
+
+       roomLabel = new Label("Room:");
+       courseLabel = new Label("Course");
+       examinerLabel = new Label("Examiner:");
+       dateLabel = new Label("Date");
+
+      roomField = new TextField();
+      roomField.setEditable(false);
+      courseField = new TextField();
+      courseField.setEditable(false);
+      examinerField = new TextField();
+      examinerField.setEditable(false);
+      dateField = new TextField();
+      dateField.setEditable(false);
+
+      courseDataPane = new GridPane();
+      courseDataPane.setHgap(5);
+      courseDataPane.setVgap(5);
+      courseDataPane.addRow(0, roomLabel, roomField);
+      courseDataPane.addRow(1, courseLabel, courseField);
+      courseDataPane.addRow(2, examinerLabel, examinerField);
+      courseDataPane.addRow(3, dateLabel, dateField);
+
+       coursePane.getChildren().add(examBox);
+       coursePane.getChildren().add(courseDataPane);
+         //exam data-end
 
     //room data- start
     roomPane = new VBox(20);
