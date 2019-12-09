@@ -28,6 +28,14 @@ public class TeacherList implements Serializable
   }
 
   /**
+   * Gets the size of the arrayList
+   * @return the size of the arrayList
+   */
+  public int size() // new method because of an error in ChangeExaminerTab
+  {
+    return teachers.size();
+  }
+  /**
    * Gets a String representation of the TeacherList.
    *
    * @return a String containing information about all Teacher objects in the list - each Teacher object followed by a new line character

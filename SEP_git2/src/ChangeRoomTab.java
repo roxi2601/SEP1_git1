@@ -68,37 +68,37 @@ public class ChangeRoomTab extends Tab
     changeRoomPane = new HBox(20);
 
     //course data-start
-    coursePane = new VBox(20);
-    coursePane.setPrefWidth(200);
-
-    examBox = new ComboBox<Exam>();
-    examBox.setOnAction(listener);
-
-    roomLabel = new Label("Room:");
-    courseLabel = new Label("Course");
-    examinerLabel = new Label("Examiner:");
-    dateLabel = new Label("Date");
-
-    roomField = new TextField();
-    roomField.setEditable(false);
-    courseField = new TextField();
-    courseField.setEditable(false);
-    examinerField = new TextField();
-    examinerField.setEditable(false);
-    dateField = new TextField();
-    dateField.setEditable(false);
-
-    courseDataPane = new GridPane();
-    courseDataPane.setHgap(5);
-    courseDataPane.setVgap(5);
-    courseDataPane.addRow(0, roomLabel, roomField);
-    courseDataPane.addRow(1, courseLabel, courseField);
-    courseDataPane.addRow(2, examinerLabel, examinerField);
-    courseDataPane.addRow(3, dateLabel, dateField);
-
-    coursePane.getChildren().add(examBox);
-    coursePane.getChildren().add(courseDataPane);
-     //course data-end
+    //    coursePane = new VBox(20);
+    //    coursePane.setPrefWidth(200);
+    //
+    //    examBox = new ComboBox<Exam>();
+    //    examBox.setOnAction(listener);
+    //
+    //    roomLabel = new Label("Room:");
+    //    courseLabel = new Label("Course");
+    //    examinerLabel = new Label("Examiner:");
+    //    dateLabel = new Label("Date");
+    //
+    //    roomField = new TextField();
+    //    roomField.setEditable(false);
+    //    courseField = new TextField();
+    //    courseField.setEditable(false);
+    //    examinerField = new TextField();
+    //    examinerField.setEditable(false);
+    //    dateField = new TextField();
+    //    dateField.setEditable(false);
+    //
+    //    courseDataPane = new GridPane();
+    //    courseDataPane.setHgap(5);
+    //    courseDataPane.setVgap(5);
+    //    courseDataPane.addRow(0, roomLabel, roomField);
+    //    courseDataPane.addRow(1, courseLabel, courseField);
+    //    courseDataPane.addRow(2, examinerLabel, examinerField);
+    //    courseDataPane.addRow(3, dateLabel, dateField);
+    //
+    //    coursePane.getChildren().add(examBox);
+    //    coursePane.getChildren().add(courseDataPane);
+    //     //course data-end
 
     //room data- start
     roomPane = new VBox(20);
@@ -162,7 +162,7 @@ public class ChangeRoomTab extends Tab
     }
 
   /**
-   * Updates the examBox ComboBox with information from the course file
+   * Updates the examBox ComboBox with information from the exam file
    */
   public void updateExamBox()
   {
@@ -185,6 +185,9 @@ public class ChangeRoomTab extends Tab
       examBox.getSelectionModel().select(currentIndex);
     }
   }
+  /**
+   * Updates the roomBox ComboBox with information from the room file
+   */
   public void updateRoomBox()
   {
     int currentIndex = roomBox.getSelectionModel().getSelectedIndex();
@@ -225,7 +228,7 @@ public class ChangeRoomTab extends Tab
         {
           projector = "?";
         }
-        if (seats.equals(" "))
+        else if (seats.equals(" "))
         {
           seats = "?";
         }
