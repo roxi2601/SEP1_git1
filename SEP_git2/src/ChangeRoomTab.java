@@ -36,10 +36,6 @@ public class ChangeRoomTab extends Tab
   private Button addButton;
   private Button removeButton;
 
-  private FlowPane imagePane;
-  private Image logo;
-  private ImageView logoView;
-
   private TextField courseField;
   private TextField examinerField;
   private TextField roomField;
