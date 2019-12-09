@@ -62,6 +62,7 @@ public class ExamTab extends Tab
 
     courseColumn = new TableColumn<Exam, String>("Course");
     courseColumn.setCellValueFactory(new PropertyValueFactory<Exam,String>("country")); //this too
+    //me too:(((
     courseColumn.setPrefWidth(150);
 
     examinerColumn = new TableColumn<Exam, String>("Examiner");
