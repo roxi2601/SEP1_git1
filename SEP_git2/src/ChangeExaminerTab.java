@@ -55,18 +55,18 @@ public class ChangeExaminerTab extends Tab
   /**
    * Constructor initializing the GUI components
    * @param title The title of the tab
-   * @param adapter ExamScheduleAdapter object used for retrieving and storing room information
+   * @param adapter ExamScheduleAdapter object used for retrieving and storing examiner information
    */
   public ChangeExaminerTab(String title, ExamScheduleAdapter adapter)
   {
-    super("Change examiner");
+    super(title);
     this.adapter = adapter;
 
     listener = new MyActionListener();
 
     changeExaminerPane = new HBox(20);
 
-    //course data-start
+    //exam data-start
     coursePane = new VBox(20);
     coursePane.setPrefWidth(200);
 
@@ -97,7 +97,7 @@ public class ChangeExaminerTab extends Tab
 
     coursePane.getChildren().add(examBox);
     coursePane.getChildren().add(courseDataPane);
-    //course data-end
+    //exam data-end
 
     //examiner data- start
     examinerPane = new VBox(20);

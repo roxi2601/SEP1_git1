@@ -59,7 +59,7 @@ public class ChangeRoomTab extends Tab
    */
   public ChangeRoomTab(String title, ExamScheduleAdapter adapter)
   {
-    super("Change room");
+    super(title);
 
     this.adapter = adapter;
 
@@ -67,7 +67,7 @@ public class ChangeRoomTab extends Tab
 
     changeRoomPane = new HBox(20);
 
-    //course data-start
+    //exam data-start
     //    coursePane = new VBox(20);
     //    coursePane.setPrefWidth(200);
     //
@@ -98,7 +98,7 @@ public class ChangeRoomTab extends Tab
     //
     //    coursePane.getChildren().add(examBox);
     //    coursePane.getChildren().add(courseDataPane);
-    //     //course data-end
+    //     //exam data-end
 
     //room data- start
     roomPane = new VBox(20);
