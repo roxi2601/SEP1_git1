@@ -285,6 +285,7 @@ public class ChangeRoomTab extends Tab
           projectorField.setText(temp.isProjector());
           seatsField.setText(temp.getSeatsCapacity());
           roomNumberField.setText(temp.getNumber());
+
         }
       }
     }
