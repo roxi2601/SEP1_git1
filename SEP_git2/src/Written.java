@@ -9,15 +9,14 @@ public class Written extends Exam implements Serializable
 {
   /**
    * Four-argument constructor.
-   * @param kind kind of the exam
    * @param course the exam's course
    * @param examiner the exam's examiner
    * @param date the exam's date
    * @param room the exam's room
    */
-  public Written(String kind,Course course,Teacher examiner, MyDate date, Room room)
+  public Written(Course course,Teacher examiner, MyDate date, Room room)
   {
-    super(kind,course, examiner, date, room);
+    super(course, examiner, date, room);
   }
   /**
    * Gets type of the exam.

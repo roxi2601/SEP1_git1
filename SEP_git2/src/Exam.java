@@ -12,19 +12,16 @@ public abstract class Exam implements Serializable
   private MyDate date;
   private Room room;
   private Course course;
-  private String kind; // is it midterm, re-exam or re-re-exam???
 
   /**
    * Five-argument constructor.
-   * @param kind the exam's kind
    * @param course the exam's course
    * @param examiner the exam's examiner
    * @param date the exam's date
    * @param room the exam' room
    */
-  public Exam(String kind, Course course, Teacher examiner, MyDate date, Room room)
+  public Exam(Course course, Teacher examiner, MyDate date, Room room)
   {
-    this.kind = kind;
     this.room=room;
     this.examiner=examiner;
     this.date=date;
@@ -39,25 +36,6 @@ public abstract class Exam implements Serializable
   {
     return course;
   }
-
-  /**
-   * Sets kind of the exam.
-   * @param kind what kind of the exam will be set to
-   */
-  public void setKind(String kind)
-  {
-    this.kind = kind;
-  }
-
-  /**
-   * Gets kind of the exam.
-   * @return kind of the exam
-   */
-  public String getKind()
-  {
-    return kind;
-  }
-
   /**
    * Gets the exam's room
    * @return the exam's room

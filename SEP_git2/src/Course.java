@@ -13,7 +13,6 @@ public class Course implements Serializable
   private int numberOfStudents;
   private String name;
   private String examType;// if its oral room needs projector
-  //Do we need this data and where? :
 
   /**
    * Five-argument constructor.
