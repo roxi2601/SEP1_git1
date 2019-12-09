@@ -11,7 +11,7 @@ public class MyDate implements Serializable
   private int day;
   private int month;
   private int year;
-  private ArrayList<TimePeriod> hours;
+  private ArrayList<TimePeriod> hours;// delate it and make it as one class with two hours parameters
 
   /**
    * Three-argument constructor.
