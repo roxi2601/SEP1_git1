@@ -257,10 +257,10 @@ public class ChangeExaminerTab extends Tab
         Exam temp = examBox.getSelectionModel().getSelectedItem();
         if(temp != null)
         {
-          roomField.setText(temp.getRoom());
-          courseField.setText(temp.getCourse());
-          examinerField.setText(temp.getExaminer());
-          dateField.setText(temp.getDate());
+          roomField.setText(String.valueOf(temp.getRoom()));
+          courseField.setText(String.valueOf(temp.getCourse()));
+          examinerField.setText(String.valueOf(temp.getExaminer()));
+          dateField.setText(String.valueOf(temp.getDate()));
         }
       }
       else if(e.getSource() == examinerBox)
@@ -269,7 +269,7 @@ public class ChangeExaminerTab extends Tab
         if(temp !=null)
         {
           nameField.setText(temp.getName());
-          availabilityField.setText(temp.getAvailability());
+          availabilityField.setText(String.valueOf(temp.getAvailability()));
           contactField.setText(temp.getContact());
         }
         else if(temp.equals("New"))

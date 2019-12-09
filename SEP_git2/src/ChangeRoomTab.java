@@ -1,6 +1,5 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -261,10 +260,10 @@ public class ChangeRoomTab extends Tab
         Exam temp = examBox.getSelectionModel().getSelectedItem();
         if(temp != null)
         {
-          roomField.setText(temp.getRoom());
-          courseField.setText(temp.getCourse());
-          examinerField.setText(temp.getExaminer());
-          dateField.setText(temp.getDate());
+          roomField.setText(String.valueOf(temp.getRoom()));
+          courseField.setText(String.valueOf(temp.getCourse()));
+          examinerField.setText(String.valueOf(temp.getExaminer()));
+          dateField.setText(String.valueOf(temp.getDate()));
         }
       }
       else if (e.getSource() == roomBox)
@@ -272,8 +271,8 @@ public class ChangeRoomTab extends Tab
         Room temp = roomBox.getSelectionModel().getSelectedItem();
         if(temp != null)
         {
-          projectorField.setText(temp.isProjector());
-          seatsField.setText(temp.getSeatsCapacity());
+          projectorField.setText(String.valueOf(temp.isProjector()));
+          seatsField.setText(String.valueOf(temp.getSeatsCapacity()));
           roomNumberField.setText(temp.getNumber());
 
         }
