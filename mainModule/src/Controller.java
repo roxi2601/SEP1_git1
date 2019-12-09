@@ -2,12 +2,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -19,6 +21,12 @@ public class Controller implements Initializable
   @FXML private AnchorPane selection;
   @FXML private AnchorPane root;
   @FXML private TextField myText;
+  @FXML private TabPane tabpane;
+  private StackPane stackPane;
+  private Group group;
+  private Tab tab1;
+  private Tab tab2;
+
   private double x = 0;
   private double y = 0;
   private Stage stage;
@@ -28,7 +36,9 @@ public class Controller implements Initializable
   @Override public void initialize(URL url, ResourceBundle resourceBundle)
   {
     makeDraggable();
-    Platform.runLater( () -> root.requestFocus() );
+    Platform.runLater( () -> root.requestFocus() ); // Disable automatic focus of textfield
+
+
 
   }
 
@@ -53,6 +63,7 @@ public class Controller implements Initializable
   }
 
   public void makeDraggable(){
+    StackPane headerArea  = (StackPane) tabpane.lookup(".tab-header-area");
     selection.setOnMousePressed((event) -> {
       x = event.getSceneX();
       y = event.getSceneY();
