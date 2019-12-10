@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Teacher implements Serializable
 {
   private String name;
-  private ArrayList<MyDate>unavailability;
+  private ArrayList<MyDate>availability;
   private String contact;
 
   /**
@@ -21,7 +21,7 @@ public class Teacher implements Serializable
   {
     this.name=name;
     this.contact=contact;
-    unavailability=new ArrayList<MyDate>();
+    availability=new ArrayList<MyDate>();
   }
 
   /**
@@ -37,19 +37,9 @@ public class Teacher implements Serializable
    * Gets the teacher's availability.
    * @return the teacher's availability
    */
-  public String getAvailabilityString()
+  public ArrayList<MyDate> getAvailability()
   {
-    String str="";
-    for(int i=0; i<unavailability.size();i++)
-    {
-      str+=unavailability.get(i)+", ";
-    }
-    return str;
-  }
-
-  public ArrayList<MyDate> getUnavailability()
-  {
-    return unavailability;
+    return availability;
   }
 
   /**
@@ -71,12 +61,12 @@ public class Teacher implements Serializable
   }
 
   /**
-   * Sets the teacher's unavailability
-   * @param unavailability if the teacher is unavailable in this time
+   * Sets the teacher's availability
+   * @param availability if the teacher is available in this time
    */
-  public void setUnavailability(ArrayList<MyDate> unavailability)
+  public void setAvailability(ArrayList<MyDate> availability)
   {
-    this.unavailability = unavailability;
+    this.availability = availability;
   }
 
   /**
@@ -94,12 +84,7 @@ public class Teacher implements Serializable
    */
   public String toString()
   {
-    String str="";
-    for(int i=0; i<unavailability.size();i++)
-    {
-      str+=name;
-    }
-    return str;
+    return name;
   }
 
   /**
@@ -114,6 +99,6 @@ public class Teacher implements Serializable
       return false;
     }
     Teacher other=(Teacher) obj;
-    return name.equals(other.name) && contact.equals(other.contact) && unavailability.equals(other.unavailability);
+    return name.equals(other.name) && contact.equals(other.contact) && availability.equals(other.availability);
   }
 }

@@ -160,7 +160,6 @@ public class ExamScheduleAdapter
     {
       if(exams.getExam(i).getDate().equals(date) && exams.getExam(i).getCourse().equals(course)&& canBeReserved);
       {
-
         exams.getExam(i).reserveRoom(room);
       }
     }

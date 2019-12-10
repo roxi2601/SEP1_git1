@@ -13,7 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-public class ChangeCourseTab extends Tab
+public class MenageCourseDataTab extends Tab
 {
   private VBox changeCoursePane;
   private HBox changeCourseTopPane;
@@ -44,7 +44,7 @@ public class ChangeCourseTab extends Tab
 
   private ExamScheduleAdapter adapter;
 
-  public ChangeCourseTab(String title, ExamScheduleAdapter adapter)
+  public MenageCourseDataTab(String title, ExamScheduleAdapter adapter)
   {
     super(title);
 
