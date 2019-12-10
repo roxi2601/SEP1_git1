@@ -1,13 +1,12 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import javax.swing.*;
+
 /**
  * A GUI tab containing components for changing a exam's room.
  * @author Roksana Dziadowicz
@@ -19,14 +18,15 @@ public class ChangeRoomTab extends Tab
 
   private HBox addAndRemoveButtons;
 
-  private VBox coursePane; // left
+  private VBox examPane; // left
   private VBox roomPane; //right
+  private VBox projectorPane;
 
   private ComboBox<Exam> examBox;
   private ComboBox<Room> roomBox;
 
   private GridPane changeRoomInputPane; //right
-  private GridPane courseDataPane; //left
+  private GridPane examDataPane; //left
 
   private Button addButton;
   private Button removeButton;
@@ -35,15 +35,16 @@ public class ChangeRoomTab extends Tab
   private TextField examinerField;
   private TextField roomField;
   private TextField dateField;
-  private TextField projectorField;
   private TextField seatsField;
   private TextField roomNumberField;
+
+  private CheckBox projectorYes;
+  private CheckBox projectorNo;
 
   private Label courseLabel;
   private Label examinerLabel;
   private Label roomLabel;
   private Label dateLabel;
-  private Label projectorLabel;
   private Label seatsLabel;
   private Label roomNumberLabel;
 
@@ -67,8 +68,8 @@ public class ChangeRoomTab extends Tab
     changeRoomPane = new HBox(20);
 
     //exam data-start
-       coursePane = new VBox(20);
-       coursePane.setPrefWidth(200);
+       examPane = new VBox(20);
+       examPane.setPrefWidth(200);
 
        examBox = new ComboBox<Exam>();
        examBox.setOnAction(listener);
@@ -87,16 +88,16 @@ public class ChangeRoomTab extends Tab
       dateField = new TextField();
       dateField.setEditable(false);
 
-      courseDataPane = new GridPane();
-      courseDataPane.setHgap(5);
-      courseDataPane.setVgap(5);
-      courseDataPane.addRow(0, roomLabel, roomField);
-      courseDataPane.addRow(1, courseLabel, courseField);
-      courseDataPane.addRow(2, examinerLabel, examinerField);
-      courseDataPane.addRow(3, dateLabel, dateField);
+      examDataPane = new GridPane();
+      examDataPane.setHgap(5);
+      examDataPane.setVgap(5);
+      examDataPane.addRow(0, roomLabel, roomField);
+      examDataPane.addRow(1, courseLabel, courseField);
+      examDataPane.addRow(2, examinerLabel, examinerField);
+      examDataPane.addRow(3, dateLabel, dateField);
 
-       coursePane.getChildren().add(examBox);
-       coursePane.getChildren().add(courseDataPane);
+       examPane.getChildren().add(examBox);
+       examPane.getChildren().add(examDataPane);
          //exam data-end
 
     //room data- start
@@ -106,12 +107,16 @@ public class ChangeRoomTab extends Tab
     roomBox = new ComboBox<Room>();
     roomBox.setOnAction(listener);
 
-    projectorLabel = new Label("Projector:");
+    projectorYes = new CheckBox("Yes");
+    projectorNo = new CheckBox("No");
+
+    projectorPane.getChildren().add(projectorYes);
+    projectorPane.getChildren().add(projectorNo);
+
     seatsLabel = new Label("Number of seats:");
     roomNumberLabel = new Label("Room number:");
 
-    projectorField = new TextField();
-    projectorField.setEditable(true);
+
     seatsField = new TextField();
     seatsField.setEditable(true);
     roomNumberField = new TextField();
@@ -120,9 +125,8 @@ public class ChangeRoomTab extends Tab
     changeRoomInputPane = new GridPane();
     changeRoomInputPane.setVgap(5);
     changeRoomInputPane.setHgap(5);
-    changeRoomInputPane.addRow(0, projectorLabel, projectorField);
-    changeRoomInputPane.addRow(1, seatsLabel, seatsField);
-    changeRoomInputPane.addRow(2, roomNumberLabel, roomNumberField);
+    changeRoomInputPane.addRow(0, seatsLabel, seatsField);
+    changeRoomInputPane.addRow(1, roomNumberLabel, roomNumberField);
 
     addButton = new Button("Add");
     addButton.setOnAction(listener);
@@ -141,7 +145,7 @@ public class ChangeRoomTab extends Tab
     roomPane.getChildren().add(changeRoomInputPane);
     roomPane.getChildren().add(addAndRemoveButtons); //room data-end
 
-    changeRoomPane.getChildren().add(coursePane);
+    changeRoomPane.getChildren().add(examPane);
     changeRoomPane.getChildren().add(roomPane);
 
     super.setContent(changeRoomPane);
@@ -219,19 +223,12 @@ public class ChangeRoomTab extends Tab
     {
       if(e.getSource() == addButton)
       {
-        String projector = projectorField.getText();
-        String seats = seatsField.getText(); //is it possible to do it as int?
+        boolean projector = Boolean.parseBoolean(projectorField.getText());
+        int seats = Integer.parseInt(seatsField.getText());
         String roomNumber = roomNumberField.getText();
 
-        if (projector.equals(" "))
-        {
-          projector = "?";
-        }
-        else if (seats.equals(" "))
-        {
-          seats = "?";
-        }
-        adapter.addRoom(projector, seats, roomNumber); //we have to do addRoom() method in ExamScheduleAdapter
+        Room room=new Room(roomNumber,projector,seats);
+        adapter.changeRoom(examBox.getSelectionModel().getSelectedItem().getCourse(), examBox.getSelectionModel().getSelectedItem().getDate(), room);
         updateRoomBox();
         projectorField.setText("");
         seatsField.setText("");
@@ -281,7 +278,9 @@ public class ChangeRoomTab extends Tab
           projectorField.setText("");
           seatsField.setText("");
           roomNumberField.setText(temp.getNumber());
+          removeButton.isDisable(); //????????????????????????????????????????
         }
+
       }
     }
   }

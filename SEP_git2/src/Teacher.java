@@ -37,6 +37,16 @@ public class Teacher implements Serializable
    * Gets the teacher's availability.
    * @return the teacher's availability
    */
+  public String getAvailabilityString()
+  {
+    String str="";
+    for(int i=0; i<availability.size();i++)
+    {
+      str+=availability.get(i)+", ";
+    }
+    return str;
+  }
+
   public ArrayList<MyDate> getAvailability()
   {
     return availability;
@@ -84,7 +94,12 @@ public class Teacher implements Serializable
    */
   public String toString()
   {
-    return "Name:"+name+" Availability:"+availability+" Contact:"+contact;
+    String str="";
+    for(int i=0; i<availability.size();i++)
+    {
+      str+="Name:"+name+" Availability:"+availability.get(i)+" Contact:"+contact;
+    }
+    return str;
   }
 
   /**

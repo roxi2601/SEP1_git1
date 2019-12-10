@@ -1,13 +1,11 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 /**
  * A GUI tab containing components for changing a exam's examiner.
@@ -20,17 +18,19 @@ public class ChangeExaminerTab extends Tab
 
   private HBox addAndRemoveButtons;
 
-  private VBox coursePane; // left
+  private VBox examPane; // left
   private VBox examinerPane; //right
 
   private ComboBox<Exam> examBox;
   private ComboBox<Teacher> examinerBox;
 
   private GridPane changeExaminerInputPane; //right
-  private GridPane courseDataPane; //left
+  private GridPane examDataPane; //left
 
   private Button addButton;
   private Button removeButton;
+
+  private DatePicker datePicker;
 
   private TextField courseField;
   private TextField examinerField;
@@ -67,8 +67,8 @@ public class ChangeExaminerTab extends Tab
     changeExaminerPane = new HBox(20);
 
     //exam data-start
-    coursePane = new VBox(20);
-    coursePane.setPrefWidth(200);
+    examPane = new VBox(20);
+    examPane.setPrefWidth(200);
 
     examBox = new ComboBox<Exam>();
     examBox.setOnAction(listener);
@@ -87,16 +87,16 @@ public class ChangeExaminerTab extends Tab
     dateField = new TextField();
     dateField.setEditable(false);
 
-    courseDataPane = new GridPane();
-    courseDataPane.setHgap(5);
-    courseDataPane.setVgap(5);
-    courseDataPane.addRow(0, examinerLabel, examinerField);
-    courseDataPane.addRow(1, courseLabel, courseField);
-    courseDataPane.addRow(2, roomLabel, roomField);
-    courseDataPane.addRow(3, dateLabel, dateField);
+    examDataPane = new GridPane();
+    examDataPane.setHgap(5);
+    examDataPane.setVgap(5);
+    examDataPane.addRow(0, examinerLabel, examinerField);
+    examDataPane.addRow(1, courseLabel, courseField);
+    examDataPane.addRow(2, roomLabel, roomField);
+    examDataPane.addRow(3, dateLabel, dateField);
 
-    coursePane.getChildren().add(examBox);
-    coursePane.getChildren().add(courseDataPane);
+    examPane.getChildren().add(examBox);
+    examPane.getChildren().add(examDataPane);
     //exam data-end
 
     //examiner data- start
@@ -105,6 +105,8 @@ public class ChangeExaminerTab extends Tab
 
     examinerBox = new ComboBox<Teacher>();
     examinerBox.setOnAction(listener);
+
+    datePicker=new DatePicker();
 
     nameLabel = new Label("Name:");
     availabilityLabel = new Label("Availability:");
@@ -131,6 +133,7 @@ public class ChangeExaminerTab extends Tab
     removeButton.setOnAction(listener);
 
     examinerPane.getChildren().add(examinerBox);
+    examinerPane.getChildren().add(datePicker);
     examinerPane.getChildren().add(changeExaminerInputPane);
 
     addAndRemoveButtons = new HBox(20);
@@ -141,7 +144,7 @@ public class ChangeExaminerTab extends Tab
     examinerPane.getChildren().add(changeExaminerInputPane);
     examinerPane.getChildren().add(addAndRemoveButtons); //examiner data-end
 
-    changeExaminerPane.getChildren().add(coursePane);
+    changeExaminerPane.getChildren().add(examPane);
     changeExaminerPane.getChildren().add(examinerPane);
 
     super.setContent(changeExaminerPane);
@@ -155,9 +158,9 @@ public class ChangeExaminerTab extends Tab
     examinerField.setEditable(bool);
     contactField.setEditable(bool);
     roomField.setEditable(bool);
+    courseField.setEditable(bool);
     dateField.setEditable(bool);
-    availabilityField.setEditable(bool);
-    contactField.setEditable(bool);
+    nameField.setEditable(bool);
   }
   /**
    * Updates the examBox ComboBox with information from the exam file
@@ -229,7 +232,12 @@ public class ChangeExaminerTab extends Tab
         {
           contact = "?";
         }
-        adapter.addExaminer(name, availability, contact); //we have to do addExaminer() method in ExamScheduleAdapter
+        ArrayList<MyDate> availability2  = new ArrayList<MyDate>();
+        availability2.add(new MyDate());
+        examinerBox.getSelectionModel().getSelectedItem().getAvailability().contains(datePicker);
+        Teacher teacher = new Teacher(name,contact);
+        teacher.setAvailability();
+        adapter.changeExaminer(teacher,examBox.getSelectionModel().getSelectedItem().getDate(),examBox.getSelectionModel().getSelectedItem().getRoom());
         updateExaminerBox();
         availabilityField.setText("");
         contactField.setText("");
@@ -277,6 +285,7 @@ public class ChangeExaminerTab extends Tab
           availabilityField.setText("");
           contactField.setText("");
           nameField.setText(temp.getName());
+          removeButton.isDisable(); //????????????????????????????????????????
         }
       }
     }
