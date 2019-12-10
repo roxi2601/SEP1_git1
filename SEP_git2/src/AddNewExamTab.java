@@ -5,18 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.DatePicker;
 
 /**
  * A GUI tab containing components for adding new exam.
- * @author
+ * @author Roksana Dziadowicz
  * @version 1.0
  */
 public class AddNewExamTab extends Tab
@@ -81,6 +79,7 @@ public class AddNewExamTab extends Tab
     examPane.addRow(3, roomBoxLabel, roomBox);
 
     addButton = new Button("Add");
+    addButton.setOnAction(listener);
 
     logo = new Image("file:vialogoah.gif");
     logoView = new ImageView(logo);
