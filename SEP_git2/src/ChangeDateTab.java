@@ -46,6 +46,7 @@ public class ChangeDateTab extends Tab
   private Label dayLabel;
   private Label monthLabel;
   private Label yearLabel;
+  private Label datePickerLabel;
 
   private MyActionListener listener;
 
@@ -75,7 +76,7 @@ public class ChangeDateTab extends Tab
     roomLabel = new Label("Room:");
     courseLabel = new Label("Course");
     examinerLabel = new Label("Examiner:");
-    dateLabel = new Label("Date");
+    dateLabel = new Label ("Date:");
 
     roomField = new TextField();
     roomField.setEditable(false);
@@ -104,28 +105,29 @@ public class ChangeDateTab extends Tab
 
     datePicker = new DatePicker();
 
+    datePickerLabel = new Label("Date:");
     dayLabel = new Label("Day:");
     monthLabel = new Label("Month:");
-    yearLabel = new Label("Year:");
+    yearLabel = new Label ("Year:");
 
-    dayField = new TextField();
+    dayField=new TextField();
     dayField.setEditable(false);
-    monthField = new TextField();
+    monthField=new TextField();
     monthField.setEditable(false);
-    yearField = new TextField();
+    yearField=new TextField();
     yearField.setEditable(false);
 
     changeDateChoosePane = new GridPane();
     changeDateChoosePane.setVgap(5);
     changeDateChoosePane.setHgap(5);
-    changeDateChoosePane.addRow(0, dayLabel, dayField);
-    changeDateChoosePane.addRow(1, monthLabel, monthField);
-    changeDateChoosePane.addRow(2, yearLabel, yearField);
+    changeDateChoosePane.addRow(0, datePickerLabel, datePicker);
+    changeDateChoosePane.addRow(1, dayLabel, dayField);
+    changeDateChoosePane.addRow(2,monthLabel,monthField);
+    changeDateChoosePane.addRow(3, yearLabel,yearField);
 
     updateButton = new Button("Update");
     updateButton.setOnAction(listener);
 
-    datePane.getChildren().add(datePicker);
     datePane.getChildren().add(changeDateChoosePane);
     datePane.getChildren().add(updateButton);
     //date-end
@@ -149,31 +151,27 @@ public class ChangeDateTab extends Tab
     monthField.setEditable(bool);
     yearField.setEditable(bool);
   }
-  /**
-   * Updates the examBox ComboBox with information from the exam file
-   */
   public void updateExamBox()
-  {
-    int currentIndex = examBox.getSelectionModel().getSelectedIndex();
-
-    examBox.getItems().clear();
-
-    ExamSchedule exams = adapter.getAllExams();
-    for (int i = 0; i < exams.size(); i++)
     {
-      examBox.getItems().add(exams.get(i));
-    }
+      int currentIndex = examBox.getSelectionModel().getSelectedIndex();
 
-    if (currentIndex == -1 && examBox.getItems().size() > 0)
-    {
-      examBox.getSelectionModel().select(0);
-    }
-    else
-    {
-      examBox.getSelectionModel().select(currentIndex);
-    }
-  }
+      examBox.getItems().clear();
 
+      ExamSchedule exams = adapter.getAllExams();
+      for (int i = 0; i < exams.size(); i++)
+      {
+        examBox.getItems().add(exams.getAllExams().get(i));
+      }
+
+      if (currentIndex == -1 && examBox.getItems().size() > 0)
+      {
+        examBox.getSelectionModel().select(0);
+      }
+      else
+      {
+        examBox.getSelectionModel().select(currentIndex);
+      }
+    }
   /*
    * Inner action listener class
    * @author Roksana Dziadowicz
@@ -185,14 +183,29 @@ public class ChangeDateTab extends Tab
     {
       if(e.getSource() == updateButton)
       {
-
         int day = Integer.parseInt(dayField.getText());
-        int month = Integer.parseInt(monthField.getText()); //???????
+        int month = Integer.parseInt(monthField.getText());
         int year = Integer.parseInt(yearField.getText());
         MyDate date  = new MyDate(day, month,year);
         adapter.changeDate(examBox.getSelectionModel().getSelectedItem().getCourse(),date, examBox.getSelectionModel().getSelectedItem().getRoom());
       }
-
+      else if (e.getSource() == examBox)
+      {
+        Exam temp = examBox.getSelectionModel().getSelectedItem();
+        if (temp != null)
+        {
+          roomField.setText(String.valueOf(temp.getRoom()));
+          courseField.setText(String.valueOf(temp.getCourse()));
+          examinerField.setText(String.valueOf(temp.getExaminer()));
+          dateField.setText(String.valueOf(temp.getDate()));
+        }
+      }
+      else if (e.getSource() == datePicker)
+      {
+        dayField.setText(String.valueOf(datePicker.getValue().getDayOfMonth()));
+        monthField.setText(String.valueOf(datePicker.getValue().getMonth()));
+        yearField.setText(String.valueOf(datePicker.getValue().getYear()));
+      }
     }
   }
 

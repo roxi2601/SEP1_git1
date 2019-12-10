@@ -12,14 +12,13 @@ public class Room implements Serializable
   private int seatsCapacity;
 
   /**
-   * Five-argument constructor.
-   * @param projector if there's a projector in the room
+   * Two-argument constructor.
    * @param seatsCapacity the room's seats capacity
    */
-  public Room(String number,boolean projector, int seatsCapacity)
+  public Room(String number,int seatsCapacity)
   {
     this.number=number;
-    this.projector=projector;
+    this.projector=false;
     this.seatsCapacity=seatsCapacity;
   }
 

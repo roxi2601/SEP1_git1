@@ -25,7 +25,7 @@ public class ExamScheduleFileAdapterGUI extends Application
   private ChangeExaminerTab changeExaminerTab;
   private ChangeRoomTab changeRoomTab;
   private ChangeDateTab changeDateTab;
-  private AddNewTab addNewTab;
+  private AddNewExamTab addNewTab;
 
   private MenuBar menuBar;
 

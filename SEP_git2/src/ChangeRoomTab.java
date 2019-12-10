@@ -20,10 +20,11 @@ public class ChangeRoomTab extends Tab
 
   private VBox examPane; // left
   private VBox roomPane; //right
-  private VBox projectorPane;
 
   private ComboBox<Exam> examBox;
   private ComboBox<Room> roomBox;
+
+  private Label examBox
 
   private GridPane changeRoomInputPane; //right
   private GridPane examDataPane; //left
@@ -38,8 +39,7 @@ public class ChangeRoomTab extends Tab
   private TextField seatsField;
   private TextField roomNumberField;
 
-  private CheckBox projectorYes;
-  private CheckBox projectorNo;
+  private CheckBox projectorBox;
 
   private Label courseLabel;
   private Label examinerLabel;
@@ -107,11 +107,7 @@ public class ChangeRoomTab extends Tab
     roomBox = new ComboBox<Room>();
     roomBox.setOnAction(listener);
 
-    projectorYes = new CheckBox("Yes");
-    projectorNo = new CheckBox("No");
-
-    projectorPane.getChildren().add(projectorYes);
-    projectorPane.getChildren().add(projectorNo);
+    projectorBox = new CheckBox("Projector ");
 
     seatsLabel = new Label("Number of seats:");
     roomNumberLabel = new Label("Room number:");
@@ -134,14 +130,12 @@ public class ChangeRoomTab extends Tab
     removeButton = new Button("Remove");
     removeButton.setOnAction(listener);
 
-    roomPane.getChildren().add(roomBox);
-    roomPane.getChildren().add(changeRoomInputPane);
-
     addAndRemoveButtons = new HBox(20);
     addAndRemoveButtons.getChildren().add(addButton);
     addAndRemoveButtons.getChildren().add(removeButton);
 
     roomPane.getChildren().add(roomBox);
+    roomPane.getChildren().add(projectorBox);
     roomPane.getChildren().add(changeRoomInputPane);
     roomPane.getChildren().add(addAndRemoveButtons); //room data-end
 
@@ -163,31 +157,6 @@ public class ChangeRoomTab extends Tab
       dateField.setEditable(bool);
       roomNumberField.setEditable(bool);
     }
-
-  /**
-   * Updates the examBox ComboBox with information from the exam file
-   */
-  public void updateExamBox()
-  {
-    int currentIndex = examBox.getSelectionModel().getSelectedIndex();
-
-    examBox.getItems().clear();
-
-    ExamSchedule exams = adapter.getAllExams();
-    for (int i = 0; i < exams.size(); i++)
-    {
-      examBox.getItems().add(exams.get(i));
-    }
-
-    if (currentIndex == -1 && examBox.getItems().size() > 0)
-    {
-      examBox.getSelectionModel().select(0);
-    }
-    else
-    {
-      examBox.getSelectionModel().select(currentIndex);
-    }
-  }
   /**
    * Updates the roomBox ComboBox with information from the room file
    */
@@ -200,7 +169,7 @@ public class ChangeRoomTab extends Tab
     RoomList rooms = adapter.getAllRooms(); //we have to do getAllRooms() method in ExamScheduleAdapter
     for (int i = 0; i < rooms.size(); i++)
     {
-      roomBox.getItems().add(rooms.get(i)); //:(((
+      roomBox.getItems().add(rooms.getAllRooms().get(i));
     }
 
     if (currentIndex == -1 && roomBox.getItems().size() > 0)
@@ -223,33 +192,30 @@ public class ChangeRoomTab extends Tab
     {
       if(e.getSource() == addButton)
       {
-        boolean projector = Boolean.parseBoolean(projectorField.getText());
         int seats = Integer.parseInt(seatsField.getText());
         String roomNumber = roomNumberField.getText();
 
-        Room room=new Room(roomNumber,projector,seats);
+        Room room=new Room(roomNumber,seats);
+        if(projectorBox.isSelected())
+        {
+          room.setProjector(true);
+        }
         adapter.changeRoom(examBox.getSelectionModel().getSelectedItem().getCourse(), examBox.getSelectionModel().getSelectedItem().getDate(), room);
         updateRoomBox();
-        projectorField.setText("");
         seatsField.setText("");
       }
         else if(e.getSource() == removeButton)
       {
-        String projector = projectorField.getText();
-        String seats = seatsField.getText(); //is it possible to do it as int?
+        int seats = Integer.parseInt(seatsField.getText());
         String roomNumber = roomNumberField.getText();
 
-        if (projector.equals(" "))
+        Room room=new Room(roomNumber,seats);
+        if(projectorBox.isSelected())
         {
-          projector = "?";
+          room.setProjector(true);
         }
-        if (seats.equals(" "))
-        {
-          seats = "?";
-        }
-        adapter.removeRoom(projector, seats, roomNumber); //we have to do removeRoom() method in ExamScheduleAdapter
+        adapter.removeRoom(examBox.getSelectionModel().getSelectedItem().getCourse(), examBox.getSelectionModel().getSelectedItem().getDate(), room);
         updateRoomBox();
-        projectorField.setText("");
         seatsField.setText("");
       }
         else if (e.getSource() == examBox)
@@ -266,16 +232,20 @@ public class ChangeRoomTab extends Tab
       else if (e.getSource() == roomBox)
       {
         Room temp = roomBox.getSelectionModel().getSelectedItem();
+        Room newRoom = new Room("New",0);
+
         if(temp != null)
         {
-          projectorField.setText(String.valueOf(temp.isProjector()));
+          if(temp.isProjector())
+          {
+            projectorBox.setSelected(true);
+          }
           seatsField.setText(String.valueOf(temp.getSeatsCapacity()));
           roomNumberField.setText(temp.getNumber());
 
         }
-        else if(temp.equals("New"))
+        else if(temp.equals(newRoom))
         {
-          projectorField.setText("");
           seatsField.setText("");
           roomNumberField.setText(temp.getNumber());
           removeButton.isDisable(); //????????????????????????????????????????
