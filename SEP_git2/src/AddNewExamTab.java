@@ -130,16 +130,6 @@ public class AddNewExamTab extends Tab
         MyDate date = new MyDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue(),datePicker.getValue().getYear());
         adapter.addExam(courseBox.getSelectionModel().getSelectedItem(),examinerBox.getSelectionModel().getSelectedItem(),
             roomBox.getSelectionModel().getSelectedItem(),date);
-        if(courseBox.getSelectionModel().getSelectedItem().getExamType().equals("Oral"))
-        {
-          Exam exam = new Oral(courseBox.getSelectionModel().getSelectedItem(), examinerBox.getSelectionModel().getSelectedItem(),
-              date, roomBox.getSelectionModel().getSelectedItem());
-        }
-        else if(courseBox.getSelectionModel().getSelectedItem().getExamType().equals("Written"))
-        {
-          Exam exam = new Written(courseBox.getSelectionModel().getSelectedItem(), examinerBox.getSelectionModel().getSelectedItem(),
-              date, roomBox.getSelectionModel().getSelectedItem());
-        }
       }
     }
   }
