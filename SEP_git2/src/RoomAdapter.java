@@ -15,7 +15,7 @@ public class RoomAdapter
     fileName = "roomdata.bin";
     fileIO = new MyFileIO();
   }
-We need also methods: romove room and update room's data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! remember to check if it can be changed to prevent exeptions!!!
+We need also methods: remove room and update room's data!!!! remember to check if it can be changed to prevent exeptions!!!
   public void addObject(Room obj){
     try
     {

@@ -94,10 +94,6 @@ public class ExamScheduleAdapter
     }
     saveExamSchedule(exams);
   }
-  public void removeRoom(Room room)
-  {
-    RoomList rooms =
-  }
   public void changeCourse(Course course,MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();

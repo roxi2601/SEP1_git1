@@ -55,13 +55,18 @@ public class ExamTab extends Tab
 
   private ExamScheduleAdapter examsAdapter;
   private CourseAdapter coursesAdapter;
+  private RoomAdapter roomAdapter;
   private TeachersAdapter teachersAdapter;
 
-  public ExamTab(String title,ExamScheduleAdapter adapter)
+  public ExamTab(String title,ExamScheduleAdapter adapter,CourseAdapter courseAdapter,TeacherAdapter teacherAdapter)
   {
    super(title);
 
-   this.adapter = adapter;
+   this.examsAdapter = new ExamScheduleAdapter("exams.bin");
+   this.coursesAdapter = new CourseAdapter();
+   this.teachersAdapter = new TeachersAdapter();
+   this.roomAdapter = new RoomAdapter();
+
    listener = new MyActionListener();
 
    examsTable=  new TableView<Exam>();
@@ -130,7 +135,7 @@ public class ExamTab extends Tab
 
     allCourses =  new Course("All",null,null,null,0);
     allTeachers =  new Teacher("All",null);
-    allRooms =  new Room("All",false,0);
+    allRooms =  new Room("All",0);
 
     super.setContent(examsPane);
 
@@ -138,74 +143,82 @@ public class ExamTab extends Tab
   public void updateExamsTable()
   {
     examsTable.getItems().clear();
-    ExamSchedule exams = adapter.getAllExams();
+    ExamSchedule exams = examsAdapter.getAllExams();
     for(int i = 0;i<exams.size();i++)
     {
       examsTable.getItems().add(exams.get(i));
     }
   }
-  public void updateExamBox
+  public void updateExamBox()
+  {
+    examBox.getItems().clear();
+    ExamSchedule exams = examsAdapter.getAllExams();
+    for(int i = 0;i<exams.size();i++)
+    {
+     examBox.getItems().add(exams.get(i));
+    }
+  }
   public void updateCourseBox()
   {
     int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
 
     courseBox.getItems().clear();
-    CourseList courses = adapter.getAllCourses();
+    CourseList courses = coursesAdapter.getAllCourses();
     courses.addCourse(allCourses);
     for (int i = 0; i < courses.size(); i++)
     {
       courseBox.getItems().add(courses.getAllCourses().get(i));
     }
 
-    if (currentIndex == -1 && examBox.getItems().size() > 0)
+    if (currentIndex == -1 && courseBox.getItems().size() > 0)
     {
-      examBox.getSelectionModel().select(0);
+      courseBox.getSelectionModel().select(0);
     }
     else
     {
-      examBox.getSelectionModel().select(currentIndex);
+      courseBox.getSelectionModel().select(currentIndex);
     }
   }
   public void updateRoomBox()
   {
-    int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
+    int currentIndex = roomBox.getSelectionModel().getSelectedIndex();
 
-    courseBox.getItems().clear();
-    CourseList courses = adapter.getAllCourses();
-    courses.addCourse(allCourses);
-    for (int i = 0; i < courses.size(); i++)
+    roomBox.getItems().clear();
+    RoomList rooms= roomAdapter.getAllRooms();
+    rooms.addRoom(allRooms);
+    for (int i = 0; i < rooms.size(); i++)
     {
-      courseBox.getItems().add(courses.getAllCourses().get(i));
+      roomBox.getItems().add(rooms.getAllRooms().get(i));
     }
 
-    if (currentIndex == -1 && examBox.getItems().size() > 0)
+    if (currentIndex == -1 && roomBox.getItems().size() > 0)
     {
-      examBox.getSelectionModel().select(0);
+      roomBox.getSelectionModel().select(0);
     }
     else
     {
-      examBox.getSelectionModel().select(currentIndex);
+      roomBox.getSelectionModel().select(currentIndex);
     }
   }
   public void updateExaminerBox()
   {
-    int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
+    int currentIndex = examinerBox.getSelectionModel().getSelectedIndex();
 
-    courseBox.getItems().clear();
-    CourseList courses = adapter.getAllCourses();
-    courses.addCourse(allCourses);
-    for (int i = 0; i < courses.size(); i++)
+    examinerBox.getItems().clear();
+    TeacherList examiners= teachersAdapter.getAllTeachers();
+    examiners.addExaminer(allTeachers);
+    for (int i = 0; i < examiners.size(); i++)
     {
-      courseBox.getItems().add(courses.getAllCourses().get(i));
+      examinerBox.getItems().add(teachersAdapter.getAllTeachers().get(i));
     }
 
-    if (currentIndex == -1 && examBox.getItems().size() > 0)
+    if (currentIndex == -1 && examinerBox.getItems().size() > 0)
     {
-      examBox.getSelectionModel().select(0);
+      examinerBox.getSelectionModel().select(0);
     }
     else
     {
-      examBox.getSelectionModel().select(currentIndex);
+      examinerBox.getSelectionModel().select(currentIndex);
     }
   }
   private class MyActionListener implements EventHandler<ActionEvent>
@@ -214,7 +227,7 @@ public class ExamTab extends Tab
     {
       if(e.getSource()==getButton)
       {
-        ExamSchedule temp = adapter.getAllExams();
+        ExamSchedule temp = examsAdapter.getAllExams();
         for(int i = 0;i<temp.size();i++)
         {//how to do it to display all exams when option "all" is chosen in combo boxes and
           //how to make combo box to display "all" as first and default
@@ -239,12 +252,12 @@ public class ExamTab extends Tab
             temp.removeExam(temp.get(i));
           }
         }
-        adapter.saveExamSchedule(temp);
+        examsAdapter.saveExamSchedule(temp);
         updateExamsTable();
       }
       else if(e.getSource()==removeButton)
       {
-        ExamSchedule temp = adapter.getAllExams();
+        ExamSchedule temp = examsAdapter.getAllExams();
         for(int i = 0;i<temp.size();i++)
         {
           if(temp.get(i).equals(examBox.getSelectionModel().getSelectedItem()))
@@ -252,10 +265,9 @@ public class ExamTab extends Tab
             temp.removeExam(temp.get(i));
           }
         }
-        adapter.saveExamSchedule(temp);
+        examsAdapter.saveExamSchedule(temp);
         updateExamsTable();
       }
-
     }
   }
 }
