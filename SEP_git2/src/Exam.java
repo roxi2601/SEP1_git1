@@ -9,6 +9,7 @@ import java.io.Serializable;
 public abstract class Exam implements Serializable
 {
   private Teacher examiner;
+  private Teacher coexaminer;
   private MyDate date;
   private Room room;
   private Course course;
@@ -24,6 +25,23 @@ public abstract class Exam implements Serializable
   {
     this.room=room;
     this.examiner=examiner;
+    this.coexaminer=null;
+    this.date=date;
+    this.course=course;
+  }
+  /**
+   * Five-argument constructor.
+   * @param course the exam's course
+   * @param examiner the exam's examiner
+   * @param coexaminer the exam's coexaminer
+   * @param date the exam's date
+   * @param room the exam' room
+   */
+  public Exam(Course course, Teacher examiner,Teacher coexaminer, MyDate date, Room room)
+  {
+    this.room=room;
+    this.examiner=examiner;
+    this.coexaminer=coexaminer;
     this.date=date;
     this.course=course;
   }

@@ -13,7 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-public class ChangeCourseTab extends Tab
+public class MenageCourseDataTab extends Tab
 {
   private VBox changeCoursePane;
   private HBox changeCourseTopPane;
@@ -44,7 +44,7 @@ public class ChangeCourseTab extends Tab
 
   private ExamScheduleAdapter adapter;
 
-  public ChangeCourseTab(String title, ExamScheduleAdapter adapter)
+  public MenageCourseDataTab(String title, ExamScheduleAdapter adapter)
   {
     super(title);
 
@@ -162,15 +162,15 @@ public class ChangeCourseTab extends Tab
       }
       else if (e.getSource() == examBox)
       {
-        ExamSchedule temp = examBox.getSelectionModel().getSelectedItem();
+        Exam temp = examBox.getSelectionModel().getSelectedItem();
 
         if (temp != null)
         {
-          courseNameField.setText(temp.getCourse());
-          examField.setText(temp.getExam());
-          teacherField.setPromptText(temp.getTeacher());
-          roomField.setPromptText(temp.getRoom());
-          dateField.setPromptText(temp.getDate());
+          courseNameField.setText(String.valueOf(temp.getCourse()));
+          examField.setText(String.valueOf(temp.getType())); //??????
+          teacherField.setPromptText(String.valueOf(temp.getExaminer()));
+          roomField.setPromptText(String.valueOf(temp.getRoom()));
+          dateField.setPromptText(String.valueOf(temp.getDate()));
         }
       }
     }

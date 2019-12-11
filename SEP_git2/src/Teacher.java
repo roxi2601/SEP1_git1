@@ -84,7 +84,7 @@ public class Teacher implements Serializable
    */
   public String toString()
   {
-    return "Name:"+name+" Availability:"+availability+" Contact:"+contact;
+    return name;
   }
 
   /**
