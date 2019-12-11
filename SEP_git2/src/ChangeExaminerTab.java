@@ -52,14 +52,17 @@ public class ChangeExaminerTab extends Tab
   private Label contactLabel;
   private Label datePickerLabel;
 
+  private Teacher newExaminer;
+
   private MyActionListener listener;
 
-  private ExamScheduleAdapter adapter;
+  private TeacherAdapter adapter;
 
   /**
    * Constructor initializing the GUI components
-   * @param title The title of the tab
-   * @param adapter ExamScheduleAdapter object used for retrieving and storing examiner information
+   *
+   * @param title   The title of the tab
+   * @param adapter TeacherAdapter object used for retrieving and storing examiner information
    */
   public ChangeExaminerTab(String title, ExamScheduleAdapter adapter)
   {
@@ -81,7 +84,7 @@ public class ChangeExaminerTab extends Tab
     courseLabel = new Label("Course");
     examinerLabel = new Label("Examiner:");
     dateLabel = new Label("Date");
-    examBoxLabel = new Label ("Exam:");
+    examBoxLabel = new Label("Exam:");
 
     roomField = new TextField();
     roomField.setEditable(false);
@@ -96,7 +99,7 @@ public class ChangeExaminerTab extends Tab
     examDataPane.setHgap(5);
     examDataPane.setVgap(5);
     examDataPane.addRow(0, examBoxLabel, examBox);
-    examDataPane.addRow(1,examinerLabel,examinerField);
+    examDataPane.addRow(1, examinerLabel, examinerField);
     examDataPane.addRow(2, courseLabel, courseField);
     examDataPane.addRow(3, roomLabel, roomField);
     examDataPane.addRow(4, dateLabel, dateField);
@@ -111,9 +114,9 @@ public class ChangeExaminerTab extends Tab
     examinerBox = new ComboBox<Teacher>();
     examinerBox.setOnAction(listener);
 
-    datePicker=new DatePicker();
+    datePicker = new DatePicker();
 
-    datePickerLabel = new Label ("Date:");
+    datePickerLabel = new Label("Date:");
     nameLabel = new Label("Name:");
     availabilityLabel = new Label("Availability:");
     contactLabel = new Label("Contact:");
@@ -129,7 +132,7 @@ public class ChangeExaminerTab extends Tab
     changeExaminerInputPane = new GridPane();
     changeExaminerInputPane.setVgap(5);
     changeExaminerInputPane.setHgap(5);
-    changeExaminerInputPane.addRow(0, datePickerLabel,datePicker);
+    changeExaminerInputPane.addRow(0, datePickerLabel, datePicker);
     changeExaminerInputPane.addRow(1, examinerBoxLabel, examinerBox);
     changeExaminerInputPane.addRow(2, nameLabel, nameField);
     changeExaminerInputPane.addRow(3, availabilityLabel, availabilityField);
@@ -153,11 +156,13 @@ public class ChangeExaminerTab extends Tab
 
     super.setContent(changeExaminerPane);
   }
+
   /**
    * Enables or disables editing of examinerField, courseField, roomField, dateField, availabilityField and contactField.
+   *
    * @param bool if true then the fields will be editable, if false then they will not
    */
-  public void changeEditableState (boolean bool)
+  public void changeEditableState(boolean bool)
   {
     examinerField.setEditable(bool);
     contactField.setEditable(bool);
@@ -191,6 +196,7 @@ public class ChangeExaminerTab extends Tab
       examinerBox.getSelectionModel().select(currentIndex);
     }
   }
+
   /*
    * Inner action listener class
    * @author Roksana Dziadowicz and Julia Tankiewicz
@@ -200,68 +206,78 @@ public class ChangeExaminerTab extends Tab
   {
     public void handle(ActionEvent e)
     {
-      if(e.getSource() == addButton)
-      {
-        String name = nameField.getText();
-        String unavailability = availabilityField.getText(); //???????
-        String contact = contactField.getText();
-        if(contact.equals(" "))
-        {
-          contact = "?";
-        }
-        ArrayList<MyDate> unavailability2  = new ArrayList<MyDate>();
-        unavailability2.add(new MyDate());
-        examinerBox.getSelectionModel().getSelectedItem().getUnavailability().contains(datePicker);
-        Teacher teacher = new Teacher(name,contact);
-        teacher.setUnavailability();
-        adapter.changeExaminer(teacher,examBox.getSelectionModel().getSelectedItem().getDate(),examBox.getSelectionModel().getSelectedItem().getRoom());
-        updateExaminerBox();
-        availabilityField.setText("");
-        contactField.setText("");
-      }
-      else if(e.getSource() == removeButton)
-        {
-          String name = nameField.getText();
-          String unavailability = availabilityField.getText(); //???????
-          String contact = contactField.getText();
-          if(contact.equals(" "))
-          {
-            contact = "?";
-          }
-          adapter.removeExaminer(name, unavailability, contact); //we have to do removeExaminer() method in ExamScheduleAdapter
-          updateExaminerBox();
-          availabilityField.setText("");
-          contactField.setText("");
-        }
-      else if (e.getSource() == examBox)
-      {
-        Exam temp = examBox.getSelectionModel().getSelectedItem();
-        if(temp != null)
-        {
-          roomField.setText(String.valueOf(temp.getRoom()));
-          courseField.setText(String.valueOf(temp.getCourse()));
-          examinerField.setText(String.valueOf(temp.getExaminer()));
-          dateField.setText(String.valueOf(temp.getDate()));
-        }
-      }
-      else if(e.getSource() == examinerBox)
+      if (e.getSource() == addButton)
       {
         Teacher temp = examinerBox.getSelectionModel().getSelectedItem();
-        if(temp !=null)
+        String name = nameField.getText();
+        availability
+        String contact = examinerBox.getSelectionModel().getSelectedItem();
+        if (temp.equals(newExaminer))
         {
-          nameField.setText(temp.getName());
-          availabilityField.setText(String.valueOf(temp.getAvailability()));
-          contactField.setText(temp.getContact());
-        }
-        else if(temp.equals("New"))
-        {
-          availabilityField.setText("");
+          adapter.addObject(examBox.getSelectionModel().getSelectedItem().getCourse(),
+              examBox.getSelectionModel().getSelectedItem().getDate(), room);
+          updateExaminerBox();
           contactField.setText("");
-          nameField.setText(temp.getName());
-          removeButton.isDisable(); //????????????????????????????????????????
+          availabilityField.setText("");
+          Teacher examiner = new Teacher(name, contact);
         }
+        else
+        {
+          adapter.changeExaminerData(
+              examBox.getSelectionModel().getSelectedItem().getCourse(),
+              examBox.getSelectionModel().getSelectedItem().getDate(), room);
+          updateExaminerBox();
+          contactField.setText("");
+          availabilityField.setText("");
+        }
+
+      }
+      else if (e.getSource() == removeButton)
+      {
+        Teacher temp = examinerBox.getSelectionModel().getSelectedItem();
+        String name = nameField.getText();
+        availability
+        String contact = examinerBox.getSelectionModel().getSelectedItem();
+        if (!(temp.equals(newExaminer)))
+        {
+          adapter.removeObject(examBox.getSelectionModel().getSelectedItem().getCourse(),
+              examBox.getSelectionModel().getSelectedItem().getDate(), room);
+          updateExaminerBox();
+          contactField.setText("");
+          availabilityField.setText("");
+          Teacher examiner = new Teacher(name, contact);
+        }
+      } if (e.getSource() == examBox)
+    {
+      Exam temp = examBox.getSelectionModel().getSelectedItem();
+      if (temp != null)
+      {
+        roomField.setText(String.valueOf(temp.getRoom()));
+        courseField.setText(String.valueOf(temp.getCourse()));
+        examinerField.setText(String.valueOf(temp.getExaminer()));
+        dateField.setText(String.valueOf(temp.getDate()));
       }
     }
-  }
+    else if (e.getSource() == examinerBox)
+    {
+      Teacher temp = examinerBox.getSelectionModel().getSelectedItem();
 
+      if(temp != null)
+      {
+        nameField.setText(temp.getName());
+        availabilityField.setText(String.valueOf(temp.getAvailability()));
+        contactField.setText(temp.getContact());
+
+      }
+      else if(temp.equals(newExaminer))
+      {
+        contactField.setText("");
+        availabilityField.setText("");
+        nameField.setText(temp.getName());
+        removeButton.isDisable(); //????????????????????????????????????????
+      }
+    }
+
+    }
+  }
 }

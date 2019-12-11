@@ -203,7 +203,7 @@ public class ChangeDateTab extends Tab
       else if (e.getSource() == datePicker)
       {
         dayField.setText(String.valueOf(datePicker.getValue().getDayOfMonth()));
-        monthField.setText(String.valueOf(datePicker.getValue().getMonth()));
+        monthField.setText(String.valueOf(datePicker.getValue().getMonthValue()));
         yearField.setText(String.valueOf(datePicker.getValue().getYear()));
       }
     }
