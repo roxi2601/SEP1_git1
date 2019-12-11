@@ -26,7 +26,18 @@ public class CourseList implements Serializable
   {
     return courses;
   }
-
+  public Course getCourse(int index)
+  {
+    return courses.get(index);
+  }
+  public void addCourse(Course course)
+  {
+    courses.add(course);
+  }
+  public void removeCourse(int index)
+  {
+    courses.remove(index);
+  }
   /**
    * Gets a String representation of the CourseList.
    * @return a String containing information about all Course objects in the list-each Course object ollowed by a new line character

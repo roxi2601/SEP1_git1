@@ -40,7 +40,6 @@ public class ExamScheduleAdapter
     }
     return examSchedule;
   }
-
   //method saves the updated exam schedule and writes it to file
   public void saveExamSchedule(ExamSchedule exams)
   {
@@ -95,6 +94,10 @@ public class ExamScheduleAdapter
     }
     saveExamSchedule(exams);
   }
+  public void removeRoom(Room room)
+  {
+    RoomList rooms =
+  }
   public void changeCourse(Course course,MyDate date, Room room)
   {
     ExamSchedule exams = getAllExams();
@@ -106,6 +109,7 @@ public class ExamScheduleAdapter
         exams.getExam(i).setCourse(course);
       }
     }
+    saveExamSchedule(exams);
   }
   public void changeDate(Course course, MyDate date, Room room)
   {
@@ -125,6 +129,7 @@ public class ExamScheduleAdapter
         exams.getExam(i).setDate(date);
       }
     }
+    saveExamSchedule(exams);
   }
   public void changeExaminer(Teacher examiner,MyDate date, Room room)
   {
@@ -144,6 +149,7 @@ public class ExamScheduleAdapter
         exams.getExam(i).setExaminer(examiner);
       }
     }
+    saveExamSchedule(exams);
   }
   public void changeRoom(Course course,MyDate date, Room room)
   {
@@ -163,6 +169,7 @@ public class ExamScheduleAdapter
         exams.getExam(i).reserveRoom(room);
       }
     }
+    saveExamSchedule(exams);
   }
 }
 

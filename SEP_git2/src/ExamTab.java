@@ -45,9 +45,17 @@ public class ExamTab extends Tab
   private RadioButton oralButton;
   private ComboBox<Exam> examBox;
 
+  private Course allCourses;
+  private Room allRooms;
+  private Teacher allTeachers;
+
+  //If I will have time I will also do date picker which displays exams only on picked date :)
+
   private MyActionListener listener;
 
-  private ExamScheduleAdapter adapter;
+  private ExamScheduleAdapter examsAdapter;
+  private CourseAdapter coursesAdapter;
+  private TeachersAdapter teachersAdapter;
 
   public ExamTab(String title,ExamScheduleAdapter adapter)
   {
@@ -120,6 +128,10 @@ public class ExamTab extends Tab
     examsPane = new HBox(20);
     examsPane.getChildren().addAll(examsTable,rightPane);
 
+    allCourses =  new Course("All",null,null,null,0);
+    allTeachers =  new Teacher("All",null);
+    allRooms =  new Room("All",false,0);
+
     super.setContent(examsPane);
 
   }
@@ -132,15 +144,17 @@ public class ExamTab extends Tab
       examsTable.getItems().add(exams.get(i));
     }
   }
+  public void updateExamBox
   public void updateCourseBox()
   {
-    int currentIndex=courseBox.getSelectionModel().getSelectedIndex();
+    int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
 
     courseBox.getItems().clear();
     CourseList courses = adapter.getAllCourses();
-    for(int i =0;i<courses.size();i++)
+    courses.addCourse(allCourses);
+    for (int i = 0; i < courses.size(); i++)
     {
-      coursesBox.getItems().add(courses.get(i));
+      courseBox.getItems().add(courses.getAllCourses().get(i));
     }
 
     if (currentIndex == -1 && examBox.getItems().size() > 0)
@@ -151,16 +165,97 @@ public class ExamTab extends Tab
     {
       examBox.getSelectionModel().select(currentIndex);
     }
+  }
+  public void updateRoomBox()
+  {
+    int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
 
+    courseBox.getItems().clear();
+    CourseList courses = adapter.getAllCourses();
+    courses.addCourse(allCourses);
+    for (int i = 0; i < courses.size(); i++)
+    {
+      courseBox.getItems().add(courses.getAllCourses().get(i));
+    }
+
+    if (currentIndex == -1 && examBox.getItems().size() > 0)
+    {
+      examBox.getSelectionModel().select(0);
+    }
+    else
+    {
+      examBox.getSelectionModel().select(currentIndex);
+    }
+  }
+  public void updateExaminerBox()
+  {
+    int currentIndex = courseBox.getSelectionModel().getSelectedIndex();
+
+    courseBox.getItems().clear();
+    CourseList courses = adapter.getAllCourses();
+    courses.addCourse(allCourses);
+    for (int i = 0; i < courses.size(); i++)
+    {
+      courseBox.getItems().add(courses.getAllCourses().get(i));
+    }
+
+    if (currentIndex == -1 && examBox.getItems().size() > 0)
+    {
+      examBox.getSelectionModel().select(0);
+    }
+    else
+    {
+      examBox.getSelectionModel().select(currentIndex);
+    }
+  }
   private class MyActionListener implements EventHandler<ActionEvent>
   {
     public void handle(ActionEvent e)
     {
       if(e.getSource()==getButton)
       {
-
-        if(course
+        ExamSchedule temp = adapter.getAllExams();
+        for(int i = 0;i<temp.size();i++)
+        {//how to do it to display all exams when option "all" is chosen in combo boxes and
+          //how to make combo box to display "all" as first and default
+          if(!(courseBox.getSelectionModel().getSelectedItem().equals(allCourses)) && !temp.get(i).getCourse().equals(courseBox.getSelectionModel().getSelectedItem()))
+          {// will this 'if' work?????
+            temp.removeExam(temp.get(i));
+          }
+          if(!(roomBox.getSelectionModel().getSelectedItem().equals(allRooms)) && !temp.get(i).getRoom().equals(roomBox.getSelectionModel().getSelectedItem()))
+          {
+            temp.removeExam(temp.get(i));
+          }
+          if(!(examinerBox.getSelectionModel().getSelectedItem().equals(allTeachers)) && !temp.get(i).getExaminer().equals(examinerBox.getSelectionModel().getSelectedItem()))
+          {
+            temp.removeExam(temp.get(i));
+          }
+          if(oralButton.isSelected()&& temp.get(i).getType().equals("Written"))
+          {
+            temp.removeExam(temp.get(i));
+          }
+          if(writtenButton.isSelected()&& temp.get(i).getType().equals("Oral"))
+          {
+            temp.removeExam(temp.get(i));
+          }
+        }
+        adapter.saveExamSchedule(temp);
+        updateExamsTable();
       }
+      else if(e.getSource()==removeButton)
+      {
+        ExamSchedule temp = adapter.getAllExams();
+        for(int i = 0;i<temp.size();i++)
+        {
+          if(temp.get(i).equals(examBox.getSelectionModel().getSelectedItem()))
+          {
+            temp.removeExam(temp.get(i));
+          }
+        }
+        adapter.saveExamSchedule(temp);
+        updateExamsTable();
+      }
+
     }
   }
 }
